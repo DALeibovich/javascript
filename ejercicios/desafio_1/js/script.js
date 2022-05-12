@@ -5,6 +5,7 @@ function cuentoBuenaPipa(){
     let respuesta = '';
     let respuesta_error = '';
     let resultado;
+    let vencido = false;
     do{
         respuesta = prompt(`${respuesta_error} ${RESPUESTACORRECTA}`);  
         resultado = analizaFrase(respuesta,RESPUESTACORRECTA);
@@ -13,21 +14,33 @@ function cuentoBuenaPipa(){
             respuesta_error = `No dije "${respuesta}", dije:
             `;      
         }
-
-        if(respuesta.toLowerCase() == 'esc'){ //utiliza "esc" para salir de la iteracion
-            alert(`TE DISTE POR VENCIDO! :-( ... SI ME DECIAS:
-                ${RESPUESTACORRECTA}
-
-                ¡¡¡QUIZAS TE LO CONTABA!!!`);
-            exit;
+        //se podria detectar el evento escape y/o si apreto cancelar para poder salir
+        if(respuesta.toLowerCase() == 'esc' ){ //utiliza "esc" para salir de la iteracion
+           
+            vencido = true;
         }
 
-    }while(resultado == false); //itera hasta que se ingrese la RESPUESTACORRECTA
+    }while(resultado == false && vencido == false); //itera hasta que se ingrese la RESPUESTACORRECTA
  
-       alert("SI POR FAVOR!!!! CONTAMELO QUE YO NO LO SE! :-P");
+    mostrarRespuesta(vencido);
     
 }
 
+function mostrarRespuesta(vencido){ //muestra la respuesta y pregunta si queire intentar de nuevo
+    if(vencido == false){  
+        alert("SI POR FAVOR!!!! CONTAMELO QUE YO NO LO SE! :-P");
+        }else{
+           if(confirm(`TE DISTE POR VENCIDO! :-( ... SI ME DECIAS:
+                ${RESPUESTACORRECTA}
+                    ¡¡¡QUIZAS TE LO CONTABA!!!
+
+                    ¿deseas intentar de nuevo?
+                    ` )){
+                        cuentoBuenaPipa();
+                }
+        }
+
+}
 function analizaFrase(frase1,frase2) {
     //permite comparar 2 frases cualquiera y retornar si son iguales insesitivamente 
     let ret = false;    
