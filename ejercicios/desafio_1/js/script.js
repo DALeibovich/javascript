@@ -5,38 +5,38 @@ function cuentoBuenaPipa(){
     let respuesta = '';
     let respuesta_error = '';
     let resultado;
-    let vencido = false;
+    let porvencido = false;
     do{
-        respuesta = prompt(`${respuesta_error} ${RESPUESTACORRECTA}`);  
+        respuesta = prompt(`${respuesta_error} ${RESPUESTACORRECTA}`).toString();  
         resultado = analizaFrase(respuesta,RESPUESTACORRECTA);
         
         if(resultado == false){
             respuesta_error = `No dije "${respuesta}", dije:
             `;      
         }
-        //se podria detectar el evento escape y/o si apreto cancelar para poder salir
-        if(respuesta.toLowerCase() == 'esc' ){ //utiliza "esc" para salir de la iteracion
-           
-            vencido = true;
+        /*se podria detectar el evento escape y/o si apreto cancelar para poder salir*/
+        if(respuesta.toLowerCase() == 'esc' ){ //utiliza la palabra "esc" para salir de la iteracion           
+            porvencido = true;
         }
 
-    }while(resultado == false && vencido == false); //itera hasta que se ingrese la RESPUESTACORRECTA
+    }while(resultado == false && porvencido == false); //itera hasta que se ingrese la RESPUESTACORRECTA
  
-    mostrarRespuesta(vencido);
+    mostrarRespuesta(porvencido);
     
 }
 
-function mostrarRespuesta(vencido){ //muestra la respuesta y pregunta si queire intentar de nuevo
-    if(vencido == false){  
+function mostrarRespuesta(porvencido){ //muestra la respuesta y pregunta si queire intentar de nuevo
+    if(porvencido == false){  
         alert("SI POR FAVOR!!!! CONTAMELO QUE YO NO LO SE! :-P");
         }else{
            if(confirm(`TE DISTE POR VENCIDO! :-( ... SI ME DECIAS:
-                ${RESPUESTACORRECTA}
+                "${RESPUESTACORRECTA}"
                     ¡¡¡QUIZAS TE LO CONTABA!!!
 
-                    ¿deseas intentar de nuevo?
+                    ¿Deseas intentar de nuevo?
                     ` )){
-                        cuentoBuenaPipa();
+                        
+                        cuentoBuenaPipa(); //vuelve a comenzar el juego
                 }
         }
 

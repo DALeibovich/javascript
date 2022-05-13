@@ -1,0 +1,2 @@
+1) Ejecutar index.html
+2) escribir "esc" para salir
