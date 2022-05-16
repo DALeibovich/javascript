@@ -1,0 +1,5 @@
+1) Ejecutar simulador_entregable_1.html
+
+2) Simulador de cupones (validos: HOUSE10 = 10% dcto, HOUSE15 = 15% dcto, HOUSE500 = $500 dcto)
+
+3) Simulador de envio (validos: 5000, 6000, 7000)
