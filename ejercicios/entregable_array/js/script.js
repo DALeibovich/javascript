@@ -73,8 +73,7 @@ const eliminarCupon = (cupon) =>{
                 indice = DB_CUPONES.indexOf(cupones);
                 DB_CUPONES.splice(indice,1);       
                 ret = "eliminado con exito";
-            }
-            
+            }           
             
         }
     }
