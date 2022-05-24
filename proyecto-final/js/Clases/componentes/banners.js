@@ -17,7 +17,7 @@ const renderizaBannerHomeTop = (posicionPagina, arr, cantidad) => {
    <div class="carousel-inner">`;
 
    for (let banner of arr) {
-      console.log("a: " + banner.titulo);
+      console.log("Banner: " + banner.titulo);
       if (cont++ < cantidad) {
          if (cont > 1) activo = "";
          controles +=  ` <li data-target="#customCarousel1" data-slide-to="${cont-1}" class="${activo}"></li>`;
@@ -53,7 +53,7 @@ const renderizaBannerHomeTop = (posicionPagina, arr, cantidad) => {
    </div>
 </div>
    `;
-   console.log(controles);
+   //console.log(controles);
    document.getElementById(posicionPagina).innerHTML = contenido;
 
 }

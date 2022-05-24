@@ -84,7 +84,7 @@ export const generarBanners = (posicionPagina = 'Home-top', cantidad = 1, ordena
     let arrResultados = arrBannerLocal.filter(arrBannerLocal => arrBannerLocal.posicionPagina.includes(posicionPagina));
     //ordena segun y forma pasada por paramtro
     ordenarBanners(arrResultados, ordenarpor, forma);
-    console.log(arrResultados); //dejado para debug
+    //console.log(arrResultados); //dejado para debug
     // renderiza los componenetes del banner importandos de componentes/banners.js
     renderizaBanners(`Banner_${posicionPagina}`,arrResultados, cantidad);
 

@@ -1,5 +1,8 @@
-1) Ejecutar simulador_entregable_1.html
+Consideracione en la entrega:
+a) Basado en una plantilla boostrap
+b) Se agrego y programo el directorio /js/Clases/* y /js/Clases/componentes/*
+c) Se agrego y programo el archivo /js/script.js 
+d) Funcionalidades de 1ra pre-entrega: Carga banners dinamicos en distitnas posiciones, carga cards informativas, carga testimonios, simula agregar y quitar favoritos, simula agregar al carrito
+e) Ejecutar index.html para cargar la homepage dinamica
 
-2) Simulador de cupones (validos: HOUSE10 = 10% dcto, HOUSE15 = 15% dcto, HOUSE500 = $500 dcto)
 
-3) Simulador de envio (validos: 5000, 6000, 7000)
