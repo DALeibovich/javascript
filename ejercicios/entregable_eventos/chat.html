@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat DOM</title>
+    <script async src="js/chat.js"></script>
+</head>
+<style>
+.rojo{
+    color:red
+}
+
+</style>
+
+<body>
+<b>Entregable Eventos</b>
+    <div id="cuerpoChat" style="background-color:#f0f0f0; border:1px solid #ccc; padding:8px; width:350px; height:440px; overflow:scroll ">
+
+    </div>
+    <div style="background-color:#ccc; padding:8px; width:350px; height:50px; position: relative;" >
+        <input type="text" id="mensaje" placeholder="Ingrese texto..." style="float:left; height:30px; width:260px" >
+        <button id="btnEnviarMensaje"  style="float:left; height:35px" >Enviar</button>
+        
+    </div>
+    <button id="btnTocame" style=" display: none;" >TOCAME!!</button><br>
+    <button id="btnColorearNombre">Colorear nombre</button>
+    <button id="btnOcultarNombre">Ocultar nombre</button>
+</body>
+
+</html>
