@@ -1,4 +1,4 @@
-import {renderizaCard} from './componentes/cards.js';
+import {renderizaCard} from './componentes/Cards.js';
 class Card {
 
     constructor(id, tipo, titulo, imagen, descripcion,orden) {
