@@ -1,4 +1,4 @@
-
+/* renderiza las cards */
 
 export const renderizaCard = (idSeccion, arr, cantidad) => {
     let cont = 0;
