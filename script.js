@@ -12,9 +12,15 @@ console.log(typeof(nombre) == "number");
 console.log(IVA * 100);
 
 console.log(-10/0*7);*/
-let numero = parseInt(prompt("ingrese un numer"));
+/*let numero = parseInt(prompt("ingrese un numer"));
 let numero1 = parseFloat(prompt("ingrese un numer"));
 let numero2 = Number(prompt("ingrese un numer"));
 console.log(numero);
 console.log(numero1);
 console.log(numero2);
+
+*/
+let nombres =['david', 'nombre'];
+
+let [a]  = nombres;
+console.log(a);

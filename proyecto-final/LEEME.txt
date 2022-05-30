@@ -1,8 +1,27 @@
-Consideracione en la entrega:
+/******** 
+Consideraciones en la PRIMERA entrega:
 a) Basado en una plantilla boostrap
 b) Se agrego y programo el directorio /js/Clases/* y /js/Clases/componentes/*
 c) Se agrego y programo el archivo /js/script.js 
 d) Funcionalidades de 1ra pre-entrega: Carga banners dinamicos en distitnas posiciones, carga cards informativas, carga testimonios, simula agregar y quitar favoritos, simula agregar al carrito
-e) Ejecutar index.html para cargar la homepage dinamica
+e) Ejecutar index.html para cargar la homepage dinamica 
+**********/
 
+
+Consideraciones en la SEGUNDA entrega:
+a) Se agrego y programo funcionlidad a los botones
+b) Se agrego y programo  filtros y orden a los productos
+c) Se agrego y programo  botones y funcionalidad de comprar y agregar a favoritos por cada producto
+d) Se agrego  y programo seleccionables dinamicos de Talle, segun la existencia de stock  
+e) Se agrego  y programo  popup en  favoritos y el carrito de comprar
+f) Se agrego  y programo  eliminar favoritos y del carrito de compras productos
+g) Se programo controles varios de productos x stock
+h) se guarda en localstorage el carrito y favoritos
+i) se guarda en sessionStorage los filtros y orden seleccionado.
+j) Se agrego y programo el buscador en el top
+
+Proximas implementaciones
+-Finalizar compra
+-librerias
+-etc
 
