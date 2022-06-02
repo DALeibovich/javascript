@@ -1,304 +1,318 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <!-- Basic -->
-      <meta charset="utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <!-- Mobile Metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      <!-- Site Metas -->
-      <meta name="keywords" content="" />
-      <meta name="description" content="" />
-      <meta name="author" content="" />
-      <link rel="shortcut icon" href="images/favicon.png" type="">
-      <title>Tienda House - Su tienda amiga</title>
-      <!-- bootstrap core css -->
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-      <!-- font awesome style -->
-      <link href="css/font-awesome.min.css" rel="stylesheet" />
-      <!-- Custom styles for this template -->
-      <link href="css/style.css" rel="stylesheet" />
-      <!-- responsive style -->
-      <link href="css/responsive.css" rel="stylesheet" />
-      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-      <script type="module" src="js/script.js"></script>
-   </head>
-   <style>
 
-      .claseBotonAgregar i{
-         color: white
+<head>
+   <!-- Basic -->
+   <meta charset="utf-8" />
 
-      }
-      .claseBotonQuitar i{
-         color: red
+   <meta http-equiv="Expires" content="0">
 
-      }
-      #resultadoBuscador{
-      width: 400px; 
-      height:400px; 
-      position: fixed; 
+   <meta http-equiv="Last-Modified" content="0">
+
+   <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+
+   <meta http-equiv="Pragma" content="no-cache">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <!-- Mobile Metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+   <!-- Site Metas -->
+   <meta name="keywords" content="" />
+   <meta name="description" content="" />
+   <meta name="author" content="" />
+   <link rel="shortcut icon" href="images/favicon.png" type="">
+   <title>Tienda House - Su tienda amiga</title>
+   <!-- bootstrap core css -->
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+   <!-- font awesome style -->
+   <link href="css/font-awesome.min.css" rel="stylesheet" />
+   <!-- Custom styles for this template -->
+   <link href="css/style.css" rel="stylesheet" />
+   <!-- responsive style -->
+   <link href="css/responsive.css" rel="stylesheet" />
+   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+   <script type="module" src="js/script.js"></script>
+</head>
+<style>
+   .claseBotonAgregar i {
+      color: white
+   }
+
+   .claseBotonQuitar i {
+      color: red
+   }
+
+   #resultadoBuscador {
+      width: 400px;
+      height: 400px;
+      position: fixed;
       background-color: #f0f0f0;
-      z-index:1000;
-      overflow-y:auto;
+      z-index: 1000;
+      overflow-y: auto;
       padding-top: 10px;
-      margin-top:10px;
-      border:1px solid #ccc;
+      margin-top: 10px;
+      border: 1px solid #ccc;
       display: none;
-      }
+   }
 
-      .cabecera_fija{
-         position: fixed;
-    background: white;
-    width: 100%;
-    z-index: 1000;
-      }
-   </style>
-   <body>
-      <div class="hero_area">
-         <!-- header section strats -->
-         <header class="header_section cabecera_fija" >
-            <div class="container">
-               <nav class="navbar navbar-expand-lg custom_nav-container " >
-                  <a class="navbar-brand" href="index.html"><!--<img width="250" src="images/logo.png" alt="#" />-->
-                <h1 class="visible-lg">Tienda House</h1>              
-                </a>
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   .cabecera_fija {
+      position: fixed;
+      background: white;
+      width: 100%;
+      z-index: 1000;
+   }
+</style>
+
+<body>
+   <div class="hero_area">
+      <!-- header section strats -->
+      <header class="header_section cabecera_fija">
+         <div class="container">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+               <a class="navbar-brand" href="index.html">
+                  <!--<img width="250" src="images/logo.png" alt="#" />-->
+                  <h1 class="visible-lg">Tienda House</h1>
+               </a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class=""> </span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                     <ul class="navbar-nav">
-                        <li>
-                           <input type="text" id="buscador" autocomplete="off" placeholder="Buscar producto...." />
-                           <div id="resultadoBuscador">
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav">
+                     <li>
+                        <input type="text" id="buscador" autocomplete="off" placeholder="Buscar producto...." />
+                        <div id="resultadoBuscador">
 
-                           </div>
-                        
-                        </li>
-                        <li class="nav-item active">
-                           <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                       
-                        <li class="nav-item">
-                           <a class="nav-link" href="#">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="#">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="#">Contacto</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="#" data-toggle="modal" data-target="#modalCarrito" id="btnCarrito">
-                              <img src="images/carrito.svg" width="20" height="20" alt="Carrito de compras">
-                           </a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="#" data-toggle="modal" data-target="#modalFavorito"  id="btnFavorito">
-                              <img src="images/favoritos.png" width="20" height="20" alt="Favoritos">
-                           </a>
-                        </li>
-                        <!--<form class="form-inline">
+                        </div>
+
+                     </li>
+                     <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                     </li>
+
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Productos</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#modalCarrito" id="btnCarrito">
+                           <img src="images/carrito.svg" width="20" height="20" alt="Carrito de compras">
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#modalFavorito" id="btnFavorito">
+                           <img src="images/favoritos.png" width="20" height="20" alt="Favoritos">
+                        </a>
+                     </li>
+                     <!--<form class="form-inline">
                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                            <i class="fa fa-search" aria-hidden="true"></i>
                            </button>
                         </form>-->
-                     </ul>
-                  </div>
-               </nav>
-            </div>
-         </header>
-         <!-- end header section -->
-         <!-- slider section -->
-         <section class="slider_section "  id="Banner_Home-top">
-           
-         </section>
-         <!-- end slider section -->
+                  </ul>
+               </div>
+            </nav>
+         </div>
+      </header>
+      <!-- end header section -->
+      <!-- slider section -->
+      <section class="slider_section " id="Banner_Home-top">
+
+      </section>
+      <!-- end slider section -->
+   </div>
+   <!-- why section -->
+   <section class="why_section layout_padding">
+      <div class="container">
+         <div class="heading_container heading_center">
+            <h2>
+               Porque elegirnos
+            </h2>
+         </div>
+         <div class="row" id="seccion_elegirnos">
+
+         </div>
       </div>
-      <!-- why section -->
-      <section class="why_section layout_padding">
-         <div class="container">
-            <div class="heading_container heading_center">
-               <h2>
-                  Porque elegirnos
-               </h2>
+   </section>
+   <!-- end why section -->
+
+
+
+   <!-- arrival section -->
+   <section class="arrival_section" id="Banner_Home-medio">
+
+
+   </section>
+   <!-- end arrival section -->
+
+   <!-- product section -->
+   <section class="product_section layout_padding">
+      <div class="container">
+         <div class="heading_container heading_center">
+            <h2>
+               Nuestros <span>productos</span>
+            </h2>
+         </div>
+         <div class="row">
+            <div class="col-md-8">Filtrar por:
+               <select id="selCategoria">
+                  <option value="-">Categoria</option>
+                  <option value="camisas">Camisas</option>
+                  <option value="vestidos">Vestidos</option>
+               </select>
+               <select id="selMarca">
+                  <option value="-">Marca</option>
+                  <option value="lacoste">Lacoste</option>
+                  <option value="polo">Polo</option>
+               </select>
+
+               <select id="selTalle">
+                  <option value="-">Talle</option>
+                  <option value="s">S</option>
+                  <option value="m">M</option>
+                  <option value="l">L</option>
+                  <option value="xl">XL</option>
+               </select>
+
             </div>
-            <div class="row"  id="seccion_elegirnos">
-             
+            <div class="col-md-4" align="Right"> Ordenar por:
+               <select id="selOrden">
+                  <option value="precio">Precio</option>
+                  <option value="nombre">Nombre</option>
+                  <option value="marca">Marca</option>
+                  <option value="categoria">Categoria</option>
+               </select>
+               <select id="selOrdenAsc">
+                  <option value="ascendente">Asc</option>
+                  <option value="descendente">Desc</option>
+               </select>
             </div>
          </div>
-      </section>
-      <!-- end why section -->
-      
+         <div class="row" id="productosHome">
 
-      
-      <!-- arrival section -->
-      <section class="arrival_section" id="Banner_Home-medio">
-         
-        
-      </section>
-      <!-- end arrival section -->
-      
-      <!-- product section -->
-      <section class="product_section layout_padding">
-         <div class="container">
-            <div class="heading_container heading_center">
-               <h2>
-                  Nuestros <span>productos</span>
-               </h2>
-            </div>
-            <div class="row">
-               <div class="col-md-8">Filtrar por: 
-                  <select id="selCategoria">
-                     <option value="-">Categoria</option>
-                     <option value="camisas">Camisas</option>
-                     <option value="vestidos">Vestidos</option>
-                  </select> 
-                  <select id="selMarca"><option value="-">Marca</option>
-                     <option value="lacoste">Lacoste</option>
-                     <option value="polo">Polo</option>
-                  </select> 
-                  
-                  <select id="selTalle"><option value="-">Talle</option>
-                     <option value="s">S</option>
-                     <option value="m">M</option>
-                     <option value="l">L</option>
-                     <option value="xl">XL</option>
-                  </select>
-                  
-               </div> 
-               <div class="col-md-4" align="Right"> Ordenar por: 
-                  <select id="selOrden">
-                     <option value="precio">Precio</option>
-                     <option value="nombre">Nombre</option>
-                     <option value="marca">Marca</option>
-                     <option value="categoria">Categoria</option>
-                  </select>
-                  <select id="selOrdenAsc">
-                     <option value="ascendente">Asc</option>
-                     <option value="descendente">Desc</option>
-                  </select>
-               </div>
-            </div>
-            <div class="row" id="productosHome">
-              
-            </div>
-            <div class="btn-box">
-               <a href="">
+         </div>
+         <div class="btn-box">
+            <a href="">
                View All products
-               </a>
-            </div>
+            </a>
          </div>
-      </section>
-      <!-- end product section -->
+      </div>
+   </section>
+   <!-- end product section -->
 
-      <!-- subscribe section -->
-      <section class="subscribe_section">
-         <div class="container-fuild">
-            <div class="box">
-               <div class="row">
-                  <div class="col-md-6 offset-md-3">
-                     <div class="subscribe_form ">
-                        <div class="heading_container heading_center">
-                           <h3>Subscribite a nuestro newsletter!</h3>
-                        </div>
-                        <p>Enterate de la tendencia en moda a nivel mundial y mucho mas...</p>
-                        <form action="">
-                           <input type="email" placeholder="Ingrese su email">
-                           <button>
-                           Suscribirse
-                           </button>
-                        </form>
+   <!-- subscribe section -->
+   <section class="subscribe_section">
+      <div class="container-fuild">
+         <div class="box">
+            <div class="row">
+               <div class="col-md-6 offset-md-3">
+                  <div class="subscribe_form ">
+                     <div class="heading_container heading_center">
+                        <h3>Subscribite a nuestro newsletter!</h3>
                      </div>
+                     <p>Enterate de la tendencia en moda a nivel mundial y mucho mas...</p>
+                     <form action="">
+                        <input type="email" placeholder="Ingrese su email">
+                        <button>
+                           Suscribirse
+                        </button>
+                     </form>
                   </div>
                </div>
             </div>
          </div>
-      </section>
-      <!-- end subscribe section -->
-      <!-- client section -->
-      <section class="client_section layout_padding">
-         <div class="container">
-            <div class="heading_container heading_center">
-               <h2>
-                  Nuestros clientes opinan
-               </h2>
-            </div>
-            <div id="seccion_testimonio">
-            </div>
+      </div>
+   </section>
+   <!-- end subscribe section -->
+   <!-- client section -->
+   <section class="client_section layout_padding">
+      <div class="container">
+         <div class="heading_container heading_center">
+            <h2>
+               Nuestros clientes opinan
+            </h2>
          </div>
-      </section>
-      <!-- end client section -->
-
-
-      <section class="why_section layout_padding">
-         <div class="container">
-            <div class="heading_container heading_center">
-               <h2>
-                  Sucursales
-               </h2>
-            </div>
-            <div class="row"  id="seccion_sucursales">
-             
-            </div>
+         <div id="seccion_testimonio">
          </div>
-      </section>
+      </div>
+   </section>
+   <!-- end client section -->
 
-      <!-- footer start -->
-      <footer>
-         <div class="container">
-            <div class="row">
-               <div class="col-md-4">
-                   <div class="full">
-                      <div class="logo_footer">
-                        <a href="#"><!--<img width="210" src="images/logo.png" alt="#" />-->
-                            <h1>TiendaHouse</h1>
-                        </a>
-                      </div>
-                      <div class="information_f">
-                        <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>
-                        <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
-                        <p><strong>EMAIL:</strong> yourmain@gmail.com</p>
-                      </div>
-                   </div>
+
+   <section class="why_section layout_padding">
+      <div class="container">
+         <div class="heading_container heading_center">
+            <h2>
+               Sucursales
+            </h2>
+         </div>
+         <div class="row" id="seccion_sucursales">
+
+         </div>
+      </div>
+   </section>
+
+   <!-- footer start -->
+   <footer>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-4">
+               <div class="full">
+                  <div class="logo_footer">
+                     <a href="#">
+                        <!--<img width="210" src="images/logo.png" alt="#" />-->
+                        <h1>TiendaHouse</h1>
+                     </a>
+                  </div>
+                  <div class="information_f">
+                     <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>
+                     <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
+                     <p><strong>EMAIL:</strong> yourmain@gmail.com</p>
+                  </div>
                </div>
-               <div class="col-md-8">
-                  <div class="row">
+            </div>
+            <div class="col-md-8">
+               <div class="row">
                   <div class="col-md-7">
                      <div class="row">
                         <div class="col-md-6">
-                     <div class="widget_menu">
-                        <h3>Menu</h3>
-                        <ul>
-                           <li><a href="#">Home</a></li>
-                           <li><a href="#">Nosotros</a></li>
-                           <li><a href="#">Productos</a></li>
-                           <li><a href="#">Testimonios</a></li>
-                           <li><a href="#">Blog</a></li>
-                           <li><a href="#">Contacto</a></li>
-                        </ul>
+                           <div class="widget_menu">
+                              <h3>Menu</h3>
+                              <ul>
+                                 <li><a href="#">Home</a></li>
+                                 <li><a href="#">Nosotros</a></li>
+                                 <li><a href="#">Productos</a></li>
+                                 <li><a href="#">Testimonios</a></li>
+                                 <li><a href="#">Blog</a></li>
+                                 <li><a href="#">Contacto</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="widget_menu">
+                              <h3>Account</h3>
+                              <ul>
+                                 <li><a href="#">Account</a></li>
+                                 <li><a href="#">Checkout</a></li>
+                                 <li><a href="#">Login</a></li>
+                                 <li><a href="#">Register</a></li>
+                                 <li><a href="#">Shopping</a></li>
+                                 <li><a href="#">Widget</a></li>
+                              </ul>
+                           </div>
+                        </div>
                      </div>
                   </div>
-                  <div class="col-md-6">
-                     <div class="widget_menu">
-                        <h3>Account</h3>
-                        <ul>
-                           <li><a href="#">Account</a></li>
-                           <li><a href="#">Checkout</a></li>
-                           <li><a href="#">Login</a></li>
-                           <li><a href="#">Register</a></li>
-                           <li><a href="#">Shopping</a></li>
-                           <li><a href="#">Widget</a></li>
-                        </ul>
-                     </div>
-                  </div>
-                     </div>
-                  </div>     
                   <div class="col-md-5">
                      <div class="widget_menu">
                         <h3>Newsletter</h3>
                         <div class="information_f">
-                          <p>Subscribe by our newsletter and get update protidin.</p>
+                           <p>Subscribe by our newsletter and get update protidin.</p>
                         </div>
                         <div class="form_sub">
                            <form>
@@ -312,71 +326,72 @@
                         </div>
                      </div>
                   </div>
-                  </div>
                </div>
             </div>
          </div>
-      </footer>
-      <!-- footer end -->
+      </div>
+   </footer>
+   <!-- footer end -->
 
 
 
-      <div class="modal" id="modalCarrito" tabindex="-1" role="dialog" >
-         <div class="modal-dialog" role="document"  style="max-width:760px!important">
-           <div class="modal-content">
-             <div class="modal-header">
+   <div class="modal" id="modalCarrito" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document" style="max-width:760px!important">
+         <div class="modal-content">
+            <div class="modal-header">
                <h5 class="modal-title">Resúmen de compra</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
+                  <span aria-hidden="true">&times;</span>
                </button>
-             </div>
-             <div class="modal-body" id="productosCarrito" style="overflow-y:scroll; height:60vh">
-              
-             </div>
-             <div class="modal-footer">
-              
+            </div>
+            <div class="modal-body" id="productosCarrito" style="overflow-y:scroll; height:60vh">
+
+            </div>
+            <div class="modal-footer">
+
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                <button type="button" class="btn btn-primary">Finalizar compra</button>
-             </div>
-           </div>
+            </div>
          </div>
-       </div>
+      </div>
+   </div>
 
 
 
 
 
-       <div class="modal" id="modalFavorito" tabindex="-1" role="dialog">
-         <div class="modal-dialog" role="document">
-           <div class="modal-content">
-             <div class="modal-header">
+   <div class="modal" id="modalFavorito" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
                <h5 class="modal-title">Favoritos</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
+                  <span aria-hidden="true">&times;</span>
                </button>
-             </div>
-             <div class="modal-body" id="productosFavorito">
-               
-             </div>
-             <div class="modal-footer">
-               
+            </div>
+            <div class="modal-body" id="productosFavorito">
+
+            </div>
+            <div class="modal-footer">
+
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-             </div>
-           </div>
+            </div>
          </div>
-       </div>
-
-
-      <div class="cpy_">
-         <p>© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a></p>
       </div>
-      <!-- jQery -->
-      <script src="js/jquery-3.4.1.min.js"></script>
-      <!-- popper js -->
-      <!--<script src="js/popper.min.js"></script>-->
-      <!-- bootstrap js -->
-      <script src="js/bootstrap.js"></script>
-      <!-- custom js -->
-      <!--<script src="js/custom.js"></script>-->
-   </body>
+   </div>
+
+
+   <div class="cpy_">
+      <p>© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a></p>
+   </div>
+   <!-- jQery -->
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <!-- popper js -->
+   <!--<script src="js/popper.min.js"></script>-->
+   <!-- bootstrap js -->
+   <script src="js/bootstrap.js"></script>
+   <!-- custom js -->
+   <!--<script src="js/custom.js"></script>-->
+</body>
+
 </html>

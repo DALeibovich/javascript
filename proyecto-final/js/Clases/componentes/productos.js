@@ -201,10 +201,10 @@ const renderizaCardProductoCarrito = (idSeccion, arr) => {
 
 
    };
-  
-   if (cont === 0){
+
+   if (cont === 0) {
       document.getElementById(idSeccion).innerHTML = 'Carrito vacio';
-   }else{
+   } else {
       contenido += renderizaResumenCarrito();
 
       document.getElementById(idSeccion).innerHTML = contenido;
@@ -213,25 +213,22 @@ const renderizaCardProductoCarrito = (idSeccion, arr) => {
          document.getElementById(`btnCarritoQuitar_${producto.sku}_${producto.talleElegido}`).addEventListener('click', (e) => {
             e.preventDefault();
             carrito.quitarProductoCarrito(`${producto.sku}`, producto.talleElegido);
-   
+
             //animacionFavorito();      
          });
       });
    }
- 
+
 
 }
 
 
-const renderizaResumenCarrito = () =>{
+const renderizaResumenCarrito = () => {
    let contenido =
-         `<div class="col-sm-6 col-md-4 col-lg-12"  style="display: -webkit-inline-box;">
-           
+      `<div class="col-sm-6 col-md-4 col-lg-12"  style="display: -webkit-inline-box;">          
           
-               <div class="col-md-6">
+               <div class="col-md-6">               
                   
-               
-                
                <div width="100%"> 
                 
                <input disabled type="text" id="TXTcarritoCuponDescuento" style="width:60%; float:left" class="form-control" placeholder="Cupon HOUSE....">
@@ -266,7 +263,7 @@ const renderizaResumenCarrito = () =>{
             
          </div><hr>
            `;
-           return contenido;
+   return contenido;
 }
 
 
