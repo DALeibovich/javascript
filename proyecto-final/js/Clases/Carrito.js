@@ -1,4 +1,5 @@
 import { arrProductos, generarProductosCarrito } from "./Producto.js";
+import { notificaciones} from '../funciones.js';
 
 class Carrito {
 
@@ -25,9 +26,10 @@ class Carrito {
         };
         
         localStorage.setItem('carrito', JSON.stringify(this.arrProductosCarrito));
+        notificaciones('Producto AGREGADO al carrito','green');
     }else{
 
-        alert("no hay stock");
+        notificaciones('No hay stock de este producto','red');
     }
    
         console.log(this.arrProductosCarrito);
@@ -56,27 +58,28 @@ class Carrito {
         localStorage.setItem('carrito',JSON.stringify(arr));
         carrito.arrProductosCarrito = [...arr];
         generarProductosCarrito('productosCarrito', carrito.arrProductosCarrito);
+        notificaciones('Producto QUITADO del carrito','orange');
         return arr;
     }
 
     cargarCarritoStorage = () => {
-        this.arrProductosCarrito = JSON.parse(localStorage.getItem('carrito')) ?? [];
+        this.arrProductosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
         // console.log(this.arrProductosCarrito);
 
     }
     cantidadProductos() {
         let suma = 0;
-        for (let producto of this.arrProductos) {
+        for (let producto of this.arrProductosCarrito) {
             suma += producto.cantidad;
         }
         return suma;
     }
 
     importeTotal() {
-
+//console.log(carrito.arrProductosCarrito)
         let total = 0;
-        for (let producto of this.arrProductos) {
-            total += producto.precio;
+        for (let producto of this.arrProductosCarrito) {
+            total += producto.precio*producto.cantidad;
 
         };
         return total;

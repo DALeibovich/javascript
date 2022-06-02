@@ -1,13 +1,18 @@
-/******** 
-Consideraciones en la PRIMERA entrega:
-a) Basado en una plantilla boostrap
-b) Se agrego y programo el directorio /js/Clases/* y /js/Clases/componentes/*
-c) Se agrego y programo el archivo /js/script.js 
-d) Funcionalidades de 1ra pre-entrega: Carga banners dinamicos en distitnas posiciones, carga cards informativas, carga testimonios, simula agregar y quitar favoritos, simula agregar al carrito
-e) Ejecutar index.html para cargar la homepage dinamica 
-**********/
+/***** Version 1.3 *****/
+Consideraciones en la entrega OPTIMIZANDO PROYECTO:
+-Se hace uso del oeprador Nullish y OR en las carga de los storage favoritos (cargarFavoritoStorage) y storage carrito (cargarCarritoStorage)
+    Archivos: /js/Clases/Favoritos.js y /js/Clases/Carrito.js
+-Se hace uso de operadores ternarios para cambiar los botones al agregar favoritos (renderizaBotonFavorito) y selector de talles (renderizaSelectTalle)
+    Archivos: /js/Clases/componentes/productos.js
+-Se hace uso del Spread para copias en los filtros de productos (filtrarPor, generarProductosCarrito) 
+    Archivos: /js/Clases/Producto.js
+-Se hace uso de desustructuracion para obtener/verificar stock del producto (verificaStock)
+    Archivos: /js/Clases/Producto.js
+-Se agrego y programo eventos y notificaciones a traves con libreria Tostify
+-Se agregaron nuevos controles y estilos en botones de favoritos de cada cards de producto.
 
 
+/***** Version 1.2 *******/ 
 Consideraciones en la SEGUNDA entrega:
 a) Se agrego y programo funcionlidad a los botones
 b) Se agrego y programo  filtros y orden a los productos
@@ -20,8 +25,20 @@ h) se guarda en localstorage el carrito y favoritos
 i) se guarda en sessionStorage los filtros y orden seleccionado.
 j) Se agrego y programo el buscador en el top
 
-Proximas implementaciones
--Finalizar compra
--librerias
--etc
+
+/***** Version 1.1 *******/ 
+Consideraciones en la PRIMERA entrega:
+a) Basado en una plantilla boostrap
+b) Se agrego y programo el directorio /js/Clases/* y /js/Clases/componentes/*
+c) Se agrego y programo el archivo /js/script.js 
+d) Funcionalidades de 1ra pre-entrega: Carga banners dinamicos en distitnas posiciones, carga cards informativas, carga testimonios, simula agregar y quitar favoritos, simula agregar al carrito
+e) Ejecutar index.html para cargar la homepage dinamica 
+
+
+
+
+
+
+
+
 

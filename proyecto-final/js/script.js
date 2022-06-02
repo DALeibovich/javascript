@@ -144,6 +144,10 @@ generarTestimonios('seccion_testimonio', 5); //carga los testimonios de la home
 
 
 /* obtencion de info sessionstorages y localstorage*/
+
+carrito.cargarCarritoStorage(); // Carga el carrito de localStorage
+favorito.cargarFavoritoStorage(); // Carga favoritos de localStorage
+
 //restaura los filtro de la sessionStorage y los ejecuta., SI NO hay filtro muestra todos los productos
 if (restaurarFiltros() == false) {
 
@@ -155,5 +159,5 @@ if (restaurarFiltros() == false) {
 }
 
 
-carrito.cargarCarritoStorage(); // Carga el carrito de localStorage
-favorito.cargarFavoritoStorage(); // Carga favoritos de localStorage
+
+

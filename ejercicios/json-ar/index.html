@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de pseudo API</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</head>
+
+<style>
+    .toast-close {
+        opacity: 1;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .toastify {
+        position: absolute;
+    }
+</style>
+
+<body>
+    
+    <div class="container">
+    <br><br>
+    
+    
+   
+    <div class="col-md-4">
+        <h3>Generador de pseudo API</h3>
+    <div class="card">
+        <div class="card-header">Subir Archivo JSON</div>
+        <div class="card-body">
+            <form method="post" action="?" class="form-control form-horizontal">
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre de la api" required><br>
+                <input type="file" class="form-control" name="archivo" id="archivo" required><br>
+                <input type="button" id="btnSubmit"  class="btn btn-primary form-control" value="Generar API">
+        </form>
+        </div>
+        <div class="card-footer" align="center"><em>solo se permite .json</em></div>
+      </div>
+    </div>
+
+      </div>
+    <script  src="js/script.js"></script>
+</body>
+
+</html>

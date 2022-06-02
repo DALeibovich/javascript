@@ -1,4 +1,5 @@
 import { generarProductosFavorito } from "./Producto.js";
+import { notificaciones} from '../funciones.js';
 /* Funciones para agregar y quitar favorito - Se geners un array de objetos de productos */
 class Favorito {
 
@@ -18,6 +19,7 @@ class Favorito {
         arr.push(sku);
         this.arrFavorito = [...new Set(arr)];
         localStorage.setItem('favorito', JSON.stringify(this.arrFavorito));
+        notificaciones('Producto AGREGADO a favoritos','green');
         // console.log(this.arrFavorito);
 
     }
@@ -28,8 +30,11 @@ class Favorito {
         let indice = arr.indexOf(sku);
         console.log(indice);
         arr.splice(indice, 1);
+        this.arrFavorito = [...new Set(arr)];
         localStorage.setItem('favorito', JSON.stringify(arr));
         generarProductosFavorito('productosFavorito', arr);
+        notificaciones('Producto QUITADO de favoritos','orange');
+
         return arr;
     }
 

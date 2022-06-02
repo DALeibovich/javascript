@@ -22,31 +22,46 @@ const formatoMoneda = (n, d = 0) => {
 const renderizaSelectTalle = (arrTalle, sku, sel = '-') => {
    let contenido = `<select id="selTalleHome_${sku}" class="option form-control">
    <option value="-" >Seleccione talle</option>`;
-   // let arr = arrTalle.split(',');
+   ;
    for (let indice of arrTalle) {
       let unidades = carrito.verificaStock(sku, indice.talle, 0);
-      if (unidades > 0) {
-         contenido += `<option ${(indice.talle === sel) ? 'selected' : ''} value="${indice.talle}">${indice.talle} (${unidades}u. disponibles)</option>
-      `;
-      } else {
-         contenido += `<option disabled="disabled" value="${indice.talle}">${indice.talle} (sin stock)</option>
-      `;
-      }
+      // Optimizacion con uso del operador ternario
+      contenido += (unidades > 0) ?
+         `<option ${(indice.talle === sel) ? 'selected' : ''} value="${indice.talle}">${indice.talle} (${unidades}u. disponibles)</option>`
+         :
+         `<option disabled="disabled" value="${indice.talle}">${indice.talle} (sin stock)</option>`;
    };
    contenido += "</select>";
 
-   //console.log((arrTalle));
    return contenido;
 }
+
+const renderizaBotonFavorito = (sku, estado = '') => {
+   let arrFav = favorito.arrFavorito;
+
+   // Optimizacion con uso del operador ternario
+   let claseBoton = (arrFav.find(arrFav => arrFav === sku)) ? 'claseBotonQuitar' : 'claseBotonAgregar';
+   let contenido = `<a href="#" name="btnAddFavHome" class="option2 btnAddFavHome ${claseBoton} ${claseBoton}_${sku}" id="btnAddFavHome_${sku}">
+   <i class="fa fa-heart" > </i> Favorito
+</a>`;
+   return contenido;
+
+}
+
+
 const renderizaCardProductoHome = (idSeccion, arr) => {
 
    let contenido = "";
+
    arr.forEach((producto) => {
+
+
       let selectorTalle = renderizaSelectTalle(producto.stock, producto.sku);
+
       contenido +=
          `<div class="col-sm-6 col-md-4 col-lg-4">
          <div class="box">
-            <div class="option_container">
+            <div class="option_container" id="option_container_${producto.sku}">
                <div class="options">
                <div id="DIVselectorTalle_${producto.sku}">
                ${selectorTalle}
@@ -54,9 +69,8 @@ const renderizaCardProductoHome = (idSeccion, arr) => {
                <a href="#" class="option1 btnAddCarHome" style="pointer-events:none"  id="btnAddCarHome_${producto.sku}">
                Agregar al carro
                </a>
-               <a href="#" name="btnAddFavHome" class="option2 btnAddFavHome" id="btnAddFavHome_${producto.sku}">
-               Agregar a favorito
-               </a>
+                <div id="DIVbtnAddFavHome_${producto.sku}">${renderizaBotonFavorito(producto.sku)}</div>
+               
                </div>
             </div>
             <div class="img-box">
@@ -84,13 +98,37 @@ const renderizaCardProductoHome = (idSeccion, arr) => {
 
    document.getElementById(idSeccion).innerHTML = contenido;
 
+   let arrFav = favorito.arrFavorito;
+
    arr.forEach((producto) => {
       //  console.log(`btnAddFavHome_${producto.sku}`);
+      let selectorFavorito = document.getElementById(`btnAddFavHome_${producto.sku}`);
+
+
+
       document.getElementById(`btnAddFavHome_${producto.sku}`).addEventListener('click', (e) => {
          e.preventDefault();
-         favorito.agregarFavorito(`${producto.sku}`);
-         animacionFavorito();
+
+         let favoritoBorrar = selectorFavorito.classList.contains(`claseBotonAgregar_${producto.sku}`) ?? 0;
+         console.log(favoritoBorrar)
+         if (favoritoBorrar === true) {
+            selectorFavorito.classList.remove(`claseBotonAgregar_${producto.sku}`);
+            selectorFavorito.classList.remove('claseBotonAgregar');
+            selectorFavorito.classList.add('claseBotonQuitar');
+            favorito.agregarFavorito(`${producto.sku}`);
+         } else {
+
+            selectorFavorito.classList.remove('claseBotonQuitar');
+            selectorFavorito.classList.add(`claseBotonAgregar_${producto.sku}`);
+            selectorFavorito.classList.add('claseBotonAgregar');
+            favorito.quitarFavorito(`${producto.sku}`);
+         }
+
       });
+
+
+
+
 
       document.getElementById(`btnAddCarHome_${producto.sku}`).addEventListener('click', (e) => {
          e.preventDefault();
@@ -163,24 +201,73 @@ const renderizaCardProductoCarrito = (idSeccion, arr) => {
 
 
    };
-   contenido += "";
+  
+   if (cont === 0){
+      document.getElementById(idSeccion).innerHTML = 'Carrito vacio';
+   }else{
+      contenido += renderizaResumenCarrito();
 
-   document.getElementById(idSeccion).innerHTML = contenido;
-
-   arr.forEach((producto) => {
-      //  console.log(`btnAddFavHome_${producto.sku}`);
-      document.getElementById(`btnCarritoQuitar_${producto.sku}_${producto.talleElegido}`).addEventListener('click', (e) => {
-         e.preventDefault();
-         carrito.quitarProductoCarrito(`${producto.sku}`, producto.talleElegido);
-
-         //animacionFavorito();      
+      document.getElementById(idSeccion).innerHTML = contenido;
+      arr.forEach((producto) => {
+         //  console.log(`btnAddFavHome_${producto.sku}`);
+         document.getElementById(`btnCarritoQuitar_${producto.sku}_${producto.talleElegido}`).addEventListener('click', (e) => {
+            e.preventDefault();
+            carrito.quitarProductoCarrito(`${producto.sku}`, producto.talleElegido);
+   
+            //animacionFavorito();      
+         });
       });
-   });
-   if (cont === 0) document.getElementById(idSeccion).innerHTML = 'Carrito vacio';
+   }
+ 
+
 }
 
 
-
+const renderizaResumenCarrito = () =>{
+   let contenido =
+         `<div class="col-sm-6 col-md-4 col-lg-12"  style="display: -webkit-inline-box;">
+           
+          
+               <div class="col-md-6">
+                  
+               
+                
+               <div width="100%"> 
+                
+               <input disabled type="text" id="TXTcarritoCuponDescuento" style="width:60%; float:left" class="form-control" placeholder="Cupon HOUSE....">
+           
+               <input disabled type="button" id="BTNcarritoCuponDescuento" style="width:40%; float:left" class="btn btn-secondary" value="Aplicar">
+           </div>
+         <hr>
+           <div width="100%" style="padding-top:10px"> 
+            
+           <input disabled class="form-control" type="text" id="TXTcarritoCuponDescuento" style="width:60%; float:left" class="form-control" placeholder="Código Postal....">
+       
+           <input disabled type="button" id="BTNcarritoCuponDescuento" style="width:40%; float:left" class="btn btn-secondary" value="Calcular">
+       </div>
+                 
+                  </div>
+                  <div class="col-md-2" style="font-size:13px">
+                <b>Totales:</b> 
+                  </div>
+                  <div class="col-md-1" style="font-size:13px">
+                   <b>${carrito.cantidadProductos()} u.</b> 
+         
+                  </div>
+                  <div class="col-md-2">
+                
+                  <b> $${formatoMoneda(carrito.importeTotal(), 2)}</b> 
+                     </div>
+                     <div class="col-md-1">
+                    
+                          </div>
+                
+               </div>
+            
+         </div><hr>
+           `;
+           return contenido;
+}
 
 
 const renderizaCardProductoFavorito = (idSeccion, arr) => {
