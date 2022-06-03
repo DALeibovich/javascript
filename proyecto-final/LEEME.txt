@@ -1,3 +1,10 @@
+/***** Version 1.4 *****/
+Consideraciones en la entrega AGREGANDO FETCH:
+-Se hizo fetch para cargar los productos desde un archivo json
+-Se hizo fetch para cargar api de criptoya.com para mostrar precios en Bitcoin
+-Se uso then, promesas, etc.
+
+
 /***** Version 1.3 *****/
 Consideraciones en la entrega OPTIMIZANDO PROYECTO:
 -Se hace uso del oeprador Nullish y OR en las carga de los storage favoritos (cargarFavoritoStorage) y storage carrito (cargarCarritoStorage)
