@@ -1,12 +1,24 @@
 import { carrito } from "../Carrito.js";
 import { favorito } from '../Favorito.js';
-
+import {  arrProductos } from '../Producto.js';
 export const renderizaCardProducto = (idSeccion, arr) => {
-   document.getElementById(idSeccion).innerHTML = "";
-   if (idSeccion === 'productosHome') renderizaCardProductoHome(idSeccion, arr);
-   if (idSeccion === 'productosCarrito') renderizaCardProductoCarrito(idSeccion, arr);
-   if (idSeccion === 'productosFavorito') renderizaCardProductoFavorito(idSeccion, arr);
-   if (idSeccion === 'resultadoBuscador') renderizaCardProductoBuscador(idSeccion, arr);
+   // carga el rederizado de productos en la seccion deseada poniendo un loading de espera
+   document.getElementById(idSeccion).innerHTML = `
+   <div style="height:200px; margin-top:50px " align="center">
+   <i class="fa fa-spinner fa-spin" style="font-size:80px" id="productosHome_${idSeccion}"></i>
+   </div>
+   `
+   
+   const interval_0 = setInterval(() => {
+      console.log('aca ' + arrProductos[0].sku.length);
+      if(arrProductos[0].sku.length > 0) clearInterval(interval_0);
+      if (idSeccion === 'productosHome') renderizaCardProductoHome(idSeccion, arr);
+      if (idSeccion === 'productosCarrito') renderizaCardProductoCarrito(idSeccion, arr);
+      if (idSeccion === 'productosFavorito') renderizaCardProductoFavorito(idSeccion, arr);
+      if (idSeccion === 'resultadoBuscador') renderizaCardProductoBuscador(idSeccion, arr);
+     
+    
+   }, 500)
 
 }
 
@@ -83,7 +95,8 @@ const renderizaCardProductoHome = (idSeccion, arr) => {
                </p> 
               
                <h6>
-                  $${formatoMoneda(producto.precio)}
+                  $${formatoMoneda(producto.precio)}<br>
+                  <font id="precio_btc_${producto.sku}" class="precio_usd">BTC<br>${(producto.precioBitcoin)}</font>
                </h6>
             </div>
          </div>
@@ -116,6 +129,7 @@ const renderizaCardProductoHome = (idSeccion, arr) => {
             selectorFavorito.classList.remove('claseBotonAgregar');
             selectorFavorito.classList.add('claseBotonQuitar');
             favorito.agregarFavorito(`${producto.sku}`);
+            
          } else {
 
             selectorFavorito.classList.remove('claseBotonQuitar');
@@ -123,6 +137,8 @@ const renderizaCardProductoHome = (idSeccion, arr) => {
             selectorFavorito.classList.add('claseBotonAgregar');
             favorito.quitarFavorito(`${producto.sku}`);
          }
+        
+         document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos();
 
       });
 
@@ -139,8 +155,9 @@ const renderizaCardProductoHome = (idSeccion, arr) => {
 
             carrito.agregarProductoCarrito(`${producto.sku}`, talle.value);
             selectorTalle.innerHTML = renderizaSelectTalle(producto.stock, producto.sku, talle.value);
-            animacionCarrito();
+           
          }
+         document.getElementById('btnCarrito_total').innerHTML = carrito.cantidadProductos();
       });
 
       let selectorTalle = document.getElementById(`selTalleHome_${producto.sku}`);
@@ -187,7 +204,8 @@ const renderizaCardProductoCarrito = (idSeccion, arr) => {
                   </div>
                   <div class="col-md-2">
                 
-                     $${formatoMoneda(producto.precio * producto.cantidad, 2)}
+                     $${formatoMoneda(producto.precio * producto.cantidad, 2)}<br>
+                     <font id="precio_btc_${producto.sku}" class="precio_usd">BTC<br>${(producto.precioBitcoin * producto.cantidad)}</font>
                      </div>
                      <div class="col-md-1">
                      <a href="#" id="btnCarritoQuitar_${producto.sku}_${producto.talleElegido}"><i class="fa fa-trash-o"></i></a>
@@ -213,7 +231,8 @@ const renderizaCardProductoCarrito = (idSeccion, arr) => {
          document.getElementById(`btnCarritoQuitar_${producto.sku}_${producto.talleElegido}`).addEventListener('click', (e) => {
             e.preventDefault();
             carrito.quitarProductoCarrito(`${producto.sku}`, producto.talleElegido);
-
+            document.getElementById('btnCarrito_total').innerHTML = carrito.cantidadProductos();
+            
             //animacionFavorito();      
          });
       });
@@ -245,7 +264,7 @@ const renderizaResumenCarrito = () => {
                  
                   </div>
                   <div class="col-md-2" style="font-size:13px">
-                <b>Totales:</b> 
+                <b></b> 
                   </div>
                   <div class="col-md-1" style="font-size:13px">
                    <b>${carrito.cantidadProductos()} u.</b> 
@@ -253,7 +272,8 @@ const renderizaResumenCarrito = () => {
                   </div>
                   <div class="col-md-2">
                 
-                  <b> $${formatoMoneda(carrito.importeTotal(), 2)}</b> 
+                  <b> $${formatoMoneda(carrito.importeTotal(), 2)}</b> <br>
+                  <font id="precio_btc_total" class="precio_usd"><b>BTC<br>${carrito.importeTotal('btc')}</b></font>
                      </div>
                      <div class="col-md-1">
                     
@@ -315,7 +335,7 @@ const renderizaCardProductoFavorito = (idSeccion, arr) => {
       document.getElementById(`btnFavoritoQuitar_${producto.sku}`).addEventListener('click', (e) => {
          e.preventDefault();
          favorito.quitarFavorito(`${producto.sku}`);
-
+         document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos();
          //animacionFavorito();      
       });
    });

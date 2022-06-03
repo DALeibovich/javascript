@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "sku": "polo01",
+    "categoria": "Camisas",
+    "nombre": "Camisa dos Caballos",
+    "imagen": "p8.png",
+    "precio": 4500,
+    "descripcion": "Camisa de seda con logo de 2 caballos",
+    "stock": [
+      {
+        "talle": "S",
+        "unidades": 3
+      },
+      {
+        "talle": "M",
+        "unidades": 4
+      },
+      {
+        "talle": "L",
+        "unidades": 4
+      },
+      {
+        "talle": "XL",
+        "unidades": 4
+      }
+    ],
+    "marca": "Polo"
+  },
+  {
+    "id": 2,
+    "sku": "laco02",
+    "categoria": "Camisas",
+    "nombre": "Camisa Yacare",
+    "imagen": "p9.png",
+    "precio": 19500,
+    "descripcion": "Camisa manga cortas de lino",
+    "stock": [
+      {
+        "talle": "S",
+        "unidades": 3
+      },
+      {
+        "talle": "L",
+        "unidades": 4
+      },
+      {
+        "talle": "XL",
+        "unidades": 4
+      }
+    ],
+    "marca": "Lacoste"
+  },
+  {
+    "id": 3,
+    "sku": "polo03",
+    "categoria": "Vestidos",
+    "nombre": "Vestido corto Potrillo",
+    "imagen": "p4.png",
+    "precio": 14500,
+    "descripcion": "Vestidos de Lino eslastizado",
+    "stock": [
+      {
+        "talle": "S",
+        "unidades": 3
+      },
+      {
+        "talle": "M",
+        "unidades": 4
+      },
+      {
+        "talle": "XL",
+        "unidades": 4
+      }
+    ],
+    "marca": "Polo"
+  },
+  {
+    "id": 4,
+    "sku": "laco03",
+    "categoria": "Vestidos",
+    "nombre": "Vestido largo Cocodrilo",
+    "imagen": "p5.png",
+    "precio": 12500,
+    "descripcion": "Vestidos de Lino con guardas de tul",
+    "stock": [
+      {
+        "talle": "S",
+        "unidades": 4
+      },
+      {
+        "talle": "L",
+        "unidades": 4
+      }
+    ],
+    "marca": "Lacoste"
+  },
+  {
+    "id": 5,
+    "sku": "laco90",
+    "categoria": "Camisas",
+    "nombre": "Camisa Lagartija",
+    "imagen": "p2.png",
+    "precio": 11400,
+    "descripcion": "Camisa manga cortas de lino",
+    "stock": [
+      {
+        "talle": "S",
+        "unidades": 3
+      }
+    ],
+    "marca": "Lacoste"
+  },
+  {
+    "id": 6,
+    "sku": "laco04",
+    "categoria": "Camisas",
+    "nombre": "Camisa Chelco",
+    "imagen": "p10.png",
+    "precio": 9800,
+    "descripcion": "Camisa manga cortas de lino",
+    "stock": [
+      {
+        "talle": "XL",
+        "unidades": 4
+      }
+    ],
+    "marca": "Lacoste"
+  }
+]

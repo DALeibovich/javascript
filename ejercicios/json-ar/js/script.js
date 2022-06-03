@@ -61,17 +61,13 @@ let response = "";
 
 async function getResponse(){
   
-  fetch('https://json.ar/apis/archivos/584a479d4f379fa4425e5f3df715e3c9.json',{
-    mode: 'no-cors',
-    creadentials: 'same-origin',
-    })
-    .then(response => {
-      console.log(response);
-      //return response.json();
-    })
+fetch("https://json.ar/apis/archivos/5d6d2a2e273bd3cae79ba9d3f91a0a84.json")
+.then(response => response.json())
+.then(data => console.log(data))
+    
 } 
 
 
 
-console.log(getResponse());
+console.log( getResponse());
  

@@ -10,7 +10,7 @@ Consideraciones en la entrega OPTIMIZANDO PROYECTO:
     Archivos: /js/Clases/Producto.js
 -Se agrego y programo eventos y notificaciones a traves con libreria Tostify
 -Se agregaron nuevos controles y estilos en botones de favoritos de cada cards de producto.
-
+-Se hace calculo de total en el carrito y se plasma para aplicar cupone descuento y costo de envio
 
 /***** Version 1.2 *******/ 
 Consideraciones en la SEGUNDA entrega:

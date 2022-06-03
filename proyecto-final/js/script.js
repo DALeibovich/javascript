@@ -2,13 +2,15 @@
 import { generarBanners } from './Clases/Banner.js';
 import { generarTestimonios } from './Clases/Testimonio.js';
 import { generarCards } from './Clases/Card.js';
-import { generarProductos, generarProductosCarrito, generarProductosFavorito } from './Clases/Producto.js';
+import { arrProductos, actualizaPrecioBitcoin, cargarProductosDB, generarProductos, generarProductosCarrito, generarProductosFavorito } from './Clases/Producto.js';
 import { favorito } from './Clases/Favorito.js';
 import { carrito } from './Clases/Carrito.js';
+import { habilitaBotones, notificaciones } from './funciones.js';
 
 
-
-
+habilitaBotones('btnFavorito',false);
+habilitaBotones('btnCarrito',false);
+habilitaBotones('buscador',false);
 
 
 /* Evento de boton carrito */
@@ -135,6 +137,12 @@ selOrdenAsc.addEventListener('change', () => {
 })
 
 
+document.getElementById('productosHome').innerHTML = `
+<div style="height:200px; margin-top:50px " align="center">
+<i class="fa fa-spinner fa-spin" style="font-size:80px" id="productosHome_spinner"></i>
+</div>
+` ;
+
 /* Genera la home dinamica de banners, cards, y testimonios */
 generarBanners('Home-top', 5, 'orden', 'ascendente'); //carga el slider principal
 generarBanners('Home-medio', 1); //carga el banner del medio
@@ -143,20 +151,81 @@ generarCards('seccion_sucursales', 5); //carga las cards de sucursales
 generarTestimonios('seccion_testimonio', 5); //carga los testimonios de la home
 
 
-/* obtencion de info sessionstorages y localstorage*/
 
-carrito.cargarCarritoStorage(); // Carga el carrito de localStorage
-favorito.cargarFavoritoStorage(); // Carga favoritos de localStorage
+function cargarInicialProductos() {
 
-//restaura los filtro de la sessionStorage y los ejecuta., SI NO hay filtro muestra todos los productos
-if (restaurarFiltros() == false) {
+    /* obtencion de info sessionstorages y localstorage*/
+    carrito.cargarCarritoStorage(); // Carga el carrito de localStorage
+    favorito.cargarFavoritoStorage(); // Carga favoritos de localStorage
 
-    /* Genera la seccion de productos de la home segun parametros (Se deja comentado distintas opciones para cargar) */
-    generarProductos('productosHome');
-    //generarProductos('productosHome',{filtrarCampo: undefined, filtrarValor: undefined},{ini:0,cantidad:15},'precio','ascendente');
-    //generarProductos('productosHome',{filtrarCampo:"marca", filtrarValor:"Lacoste"},{ini:0,cantidad:15},'nombre','ascendente');
-    //generarProductos('productosHome',{filtrarCampo:"categoria", filtrarValor:"Camisas"},{ini:2,cantidad:20},'nombre','ascendente');
+    //restaura los filtro de la sessionStorage y los ejecuta., SI NO hay filtro muestra todos los productos
+    if (restaurarFiltros() == false) {
+
+        /* Genera la seccion de productos de la home segun parametros (Se deja comentado distintas opciones para cargar) */
+        generarProductos('productosHome');
+        //generarProductos('productosHome',{filtrarCampo: undefined, filtrarValor: undefined},{ini:0,cantidad:15},'precio','ascendente');
+        //generarProductos('productosHome',{filtrarCampo:"marca", filtrarValor:"Lacoste"},{ini:0,cantidad:15},'nombre','ascendente');
+        //generarProductos('productosHome',{filtrarCampo:"categoria", filtrarValor:"Camisas"},{ini:2,cantidad:20},'nombre','ascendente');
+    }
+     document.getElementById('btnCarrito_total').innerHTML = carrito.cantidadProductos();
+     document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos();
+   
+   
+    //document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos;
+
 }
+
+
+
+
+ 
+/* Intentamos cargar los datos desde una api o archivo json:
+ -si la arga demora, notifica cada 10 segundo que esta lento
+ 
+
+*/
+let intentos = 0;
+const interval = setInterval(() => {
+   /// usamos la funcion "cargarProductosDB" hecha con fetch para cargar los datos de api o archivo json
+    cargarProductosDB(true)
+        .then(promesa => {
+            intentos++;
+            
+            const interval2 = setInterval(() => {
+                console.log(intentos)
+                if (arrProductos.length > 1) {
+                    // si hay productos en el array cargamos en el front y habilitamos carrito, favorito y buscador
+                    cargarInicialProductos();
+                    habilitaBotones('btnFavorito',true);
+                    habilitaBotones('btnCarrito',true);
+                    habilitaBotones('buscador',true);
+                    clearInterval(interval2);
+                    clearInterval(interval);
+
+                }
+                //avisa si se tarda mas de lo normal en cargar los productos
+                if( intentos > 0 && intentos++ % 8 === 0) notificaciones('La carga de productos esta tardando mas de lo normal','gray')
+            }, 1000)
+        })
+        .catch(error => {
+            console.log("No se pudo cargar los productos")
+            clearInterval(interval)
+        })
+        .finally(() => {
+            clearInterval(interval);
+        }
+
+        )
+       
+        console.log(arrProductos)
+}, 1000)
+
+
+//actualizaPrecioBitcoin();
+setInterval(actualizaPrecioBitcoin(),500000)
+
+
+
 
 
 

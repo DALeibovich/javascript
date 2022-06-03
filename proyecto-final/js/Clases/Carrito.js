@@ -75,14 +75,15 @@ class Carrito {
         return suma;
     }
 
-    importeTotal() {
+    importeTotal(moneda="") {
 //console.log(carrito.arrProductosCarrito)
         let total = 0;
         for (let producto of this.arrProductosCarrito) {
-            total += producto.precio*producto.cantidad;
+           total +=  (moneda=='btc') ?  (producto.precioBitcoin * producto.cantidad) : producto.precio*producto.cantidad;
 
         };
-        return total;
+
+        return (total);
     }
 
 

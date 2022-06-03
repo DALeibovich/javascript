@@ -38,6 +38,16 @@ class Favorito {
         return arr;
     }
 
+    cantidadProductos() {
+        let suma = 0;
+        console.log(this.arrFavorito);
+        for (let producto of this.arrFavorito) {
+            suma++;
+        }
+        console.log(suma)
+        return parseInt(suma);
+    }
+
 
 
 }

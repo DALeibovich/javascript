@@ -21,19 +21,38 @@
    <meta name="author" content="" />
    <link rel="shortcut icon" href="images/favicon.png" type="">
    <title>Tienda House - Su tienda amiga</title>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+   <link href="https://bootswatch.com/5/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
    <!-- bootstrap core css -->
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+   <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />-->
    <!-- font awesome style -->
    <link href="css/font-awesome.min.css" rel="stylesheet" />
    <!-- Custom styles for this template -->
    <link href="css/style.css" rel="stylesheet" />
    <!-- responsive style -->
+
    <link href="css/responsive.css" rel="stylesheet" />
    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-   <script type="module" src="js/script.js"></script>
+
 </head>
 <style>
+   .container div{
+      padding: 10px;
+   }
+   .precio_usd{
+      font-size:10px
+   }
+   .btonDesabilitar i {
+      filter: grayscale()
+   }
+
+   .btonHabilitar i {
+      filter: initial
+   }
+
    .claseBotonAgregar i {
       color: white
    }
@@ -60,6 +79,17 @@
       background: white;
       width: 100%;
       z-index: 1000;
+   }
+
+   .arrival_bg_box {
+      max-width: 100%
+   }
+
+   @media only screen and (max-width: 600px) {
+      .arrival_bg_box {
+         display: none;
+
+      }
    }
 </style>
 
@@ -91,7 +121,7 @@
                      </li>
 
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Productos</a>
+                        <a class="nav-link" href="#product_section">Productos</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="#">Blog</a>
@@ -101,14 +131,21 @@
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modalCarrito" id="btnCarrito">
-                           <img src="images/carrito.svg" width="20" height="20" alt="Carrito de compras">
+
+                           <i class="fa fa-shopping-cart fa-2x" style="color: violet"></i>
+                           <font id="btnCarrito_total"></font>
                         </a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modalFavorito" id="btnFavorito">
-                           <img src="images/favoritos.png" width="20" height="20" alt="Favoritos">
+
+                           <i class="fa fa-heart fa-2x" style="color: red"></i>
+                           <font id="btnFavorito_total"></font>
+
+
                         </a>
                      </li>
+                    
                      <!--<form class="form-inline">
                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                            <i class="fa fa-search" aria-hidden="true"></i>
@@ -151,7 +188,7 @@
    <!-- end arrival section -->
 
    <!-- product section -->
-   <section class="product_section layout_padding">
+   <section class="product_section layout_padding" id="product_section">
       <div class="container">
          <div class="heading_container heading_center">
             <h2>
@@ -384,6 +421,7 @@
    <div class="cpy_">
       <p>© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a></p>
    </div>
+   <script type="module" src="js/script.js"></script>
    <!-- jQery -->
    <script src="js/jquery-3.4.1.min.js"></script>
    <!-- popper js -->
