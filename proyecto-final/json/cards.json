@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "tipo": "seccion_elegirnos",
+        "titulo": "Recibilo en 24h",
+        "imagen": "recibilo.svg",
+        "descripcion": "Dependiendo donde vives, lo recibes en 24h",
+        "orden": 1
+    },
+    {
+        "id": 2,
+        "tipo": "seccion_elegirnos",
+        "titulo": "Envios gratis",
+        "imagen": "envio.svg",
+        "descripcion": "A todo el Pais para compras mayores a $6000",
+        "orden": 2
+    },
+    {
+        "id": 3,
+        "tipo": "seccion_elegirnos",
+        "titulo": "Prendas de Calidad",
+        "imagen": "calidad.svg",
+        "descripcion": "Trabajamos productos originales de grandes marcas",
+        "orden": 3
+    },
+    {
+        "id": 4,
+        "tipo": "seccion_sucursales",
+        "titulo": "Nueva Córdoba",
+        "imagen": "sucursal.png",
+        "descripcion": "Obispo Trejo 400 - Loc. A",
+        "orden": 5
+    },
+    {
+        "id": 5,
+        "tipo": "seccion_sucursales",
+        "titulo": "Córdoba Shopping",
+        "imagen": "sucursal.png",
+        "descripcion": "Misiones 132 - 2do piso",
+        "orden": 6
+    },
+    {
+        "id": 6,
+        "tipo": "seccion_sucursales",
+        "titulo": "Puerto Madero",
+        "imagen": "sucursal.png",
+        "descripcion": "Justo Moreau 50 ",
+        "orden": 6
+    }
+]

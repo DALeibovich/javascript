@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nombre": "Lorena",
+        "cargo": "Profesora",
+        "foto": "client.jpg",
+        "comentario": "Los mejores precios que he visto en internet."
+    },
+    {
+        "id": 2,
+        "nombre": "Natalia",
+        "cargo": "Agente inmobiliario",
+        "foto": "client.jpg",
+        "comentario": "Increibles los descuentos que podes encontrar"
+    },
+    {
+        "id": 3,
+        "nombre": "Roxana",
+        "cargo": "Vendedora",
+        "foto": "client.jpg",
+        "comentario": "Compre un lunes a la mañana y a la tarde ya lo recibi!!"
+    }
+]

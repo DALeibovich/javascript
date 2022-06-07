@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "codigo": "HOUSE10",
+        "beneficio": 0.1,
+        "tipo": "%"
+    },
+    {
+        "id": 2,
+        "codigo": "HOUSE15",
+        "beneficio": 0.15,
+        "tipo": "%"
+    },
+    {
+        "id": 3,
+        "codigo": "HOUSE30",
+        "beneficio": 0.3,
+        "tipo": "%"
+    },
+    {
+        "id": 4,
+        "codigo": "HOUSE500",
+        "beneficio": 500,
+        "tipo": "$"
+    },
+    {
+        "id": 5,
+        "codigo": "HOUSE800",
+        "beneficio": 800,
+        "tipo": "$"
+    }
+]

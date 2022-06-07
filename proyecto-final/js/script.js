@@ -2,15 +2,17 @@
 import { generarBanners } from './Clases/Banner.js';
 import { generarTestimonios } from './Clases/Testimonio.js';
 import { generarCards } from './Clases/Card.js';
-import { arrProductos, actualizaPrecioBitcoin, cargarProductosDB, generarProductos, generarProductosCarrito, generarProductosFavorito } from './Clases/Producto.js';
+import { arrProductos, arrProductosFiltrado, actualizaPrecioBitcoin, cargarProductosDB, generarProductos, generarProductosCarrito, generarProductosFavorito } from './Clases/Producto.js';
 import { favorito } from './Clases/Favorito.js';
 import { carrito } from './Clases/Carrito.js';
+import { cuponSeleccionado } from './Clases/Cupon.js';
+import { cpEnvioSeleccionado } from './Clases/Envio.js';
 import { habilitaBotones, notificaciones } from './funciones.js';
 
-
-habilitaBotones('btnFavorito',false);
-habilitaBotones('btnCarrito',false);
-habilitaBotones('buscador',false);
+const PAGINADOR_CANTIDAD = 3;
+habilitaBotones('btnFavorito', false);
+habilitaBotones('btnCarrito', false);
+habilitaBotones('buscador', false);
 
 
 /* Evento de boton carrito */
@@ -51,7 +53,7 @@ function restaurarFiltros() {
     valorFiltro = JSON.parse(sessionStorage.getItem('valorFiltro')) ?? [];
     campoOrden = JSON.parse(sessionStorage.getItem('campoOrden')) ?? [];
     campoOrdenAsc = JSON.parse(sessionStorage.getItem('campoOrdenAsc')) ?? [];
-    console.log(valorFiltro[0]);
+    //console.log(valorFiltro[0]);
     if (valorFiltro.length != 0) {
         ret = true;
         for (let i = 0; i < valorFiltro.length; i++) {
@@ -63,7 +65,7 @@ function restaurarFiltros() {
         selOrden.value = campoOrden;
         selOrdenAsc.value = campoOrdenAsc;
 
-        generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: 15 }, campoOrden, campoOrdenAsc);
+        generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc);
 
     }
     return ret;
@@ -89,7 +91,7 @@ function verificaFiltro() {
         valorFiltro.push(filtroTalle.value.toLowerCase());
     }
 
-    console.log(campoFiltro.length)
+    //console.log(campoFiltro.length)
     if (campoFiltro.length == 0) {
         campoFiltro.push(undefined);
         valorFiltro.push(undefined);
@@ -107,35 +109,43 @@ function verificaFiltro() {
 /* Eventos de selector de filtros y orden */
 filtroMarca.addEventListener('change', () => {
     verificaFiltro();
-    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: 15 }, campoOrden, campoOrdenAsc);
+    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc);
+    paginador();
 })
 
 filtroCategoria.addEventListener('change', () => {
     verificaFiltro();
-    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: 15 }, campoOrden, campoOrdenAsc);
+    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc);
+    paginador();
 })
 
 filtroTalle.addEventListener('change', () => {
     verificaFiltro();
-    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: 15 }, campoOrden, campoOrdenAsc);
+    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc);
+    paginador();
 })
 
-filtroBuscador.addEventListener('input', () => {
-    let texto = filtroBuscador.value.toLowerCase();
-    (texto === '') ? resultadoBuscador.style.display = 'none' : resultadoBuscador.style.display = 'block';
-    generarProductos('resultadoBuscador', { filtrarCampo: "buscador", filtrarValor: texto }, { ini: 0, cantidad: 15 }, campoOrden, campoOrdenAsc);
-})
 
 selOrden.addEventListener('change', () => {
     verificaFiltro();
-    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: 15 }, campoOrden, campoOrdenAsc);
+   // console.log(campoOrden + '   ' + campoOrdenAsc)
+    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc);
+    paginador();
 })
 
 selOrdenAsc.addEventListener('change', () => {
     verificaFiltro();
-    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: 15 }, campoOrden, campoOrdenAsc);
+    generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc);
+    paginador();
 })
 
+
+// Buscador del TOP
+filtroBuscador.addEventListener('input', () => {
+    let texto = filtroBuscador.value.toLowerCase();
+    (texto === '') ? resultadoBuscador.style.display = 'none' : resultadoBuscador.style.display = 'block';
+    generarProductos('resultadoBuscador', { filtrarCampo: "buscador", filtrarValor: texto }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc,false);
+})
 
 document.getElementById('productosHome').innerHTML = `
 <div style="height:200px; margin-top:50px " align="center">
@@ -146,10 +156,13 @@ document.getElementById('productosHome').innerHTML = `
 /* Genera la home dinamica de banners, cards, y testimonios */
 generarBanners('Home-top', 5, 'orden', 'ascendente'); //carga el slider principal
 generarBanners('Home-medio', 1); //carga el banner del medio
-generarCards('seccion_elegirnos', 5); //carga las cards de contenidos de la seccion "porque elegirnos"
-generarCards('seccion_sucursales', 5); //carga las cards de sucursales
+
 generarTestimonios('seccion_testimonio', 5); //carga los testimonios de la home
 
+
+
+generarCards('seccion_elegirnos', 5); //carga las cards de contenidos de la seccion "porque elegirnos"
+generarCards('seccion_sucursales', 5); //carga las cards de sucursales
 
 
 function cargarInicialProductos() {
@@ -158,19 +171,21 @@ function cargarInicialProductos() {
     carrito.cargarCarritoStorage(); // Carga el carrito de localStorage
     favorito.cargarFavoritoStorage(); // Carga favoritos de localStorage
 
+    
+    //cpEnvioSeleccionado = JSON.parse(localStorage.getItem('envio')) ?? '';
     //restaura los filtro de la sessionStorage y los ejecuta., SI NO hay filtro muestra todos los productos
     if (restaurarFiltros() == false) {
 
         /* Genera la seccion de productos de la home segun parametros (Se deja comentado distintas opciones para cargar) */
-        generarProductos('productosHome');
-        //generarProductos('productosHome',{filtrarCampo: undefined, filtrarValor: undefined},{ini:0,cantidad:15},'precio','ascendente');
+        //generarProductos('productosHome');
+        generarProductos('productosHome', { filtrarCampo: undefined, filtrarValor: undefined }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, 'precio', 'ascendente');
         //generarProductos('productosHome',{filtrarCampo:"marca", filtrarValor:"Lacoste"},{ini:0,cantidad:15},'nombre','ascendente');
         //generarProductos('productosHome',{filtrarCampo:"categoria", filtrarValor:"Camisas"},{ini:2,cantidad:20},'nombre','ascendente');
     }
-     document.getElementById('btnCarrito_total').innerHTML = carrito.cantidadProductos();
-     document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos();
-   
-   
+    document.getElementById('btnCarrito_total').innerHTML = carrito.cantidadProductos();
+    document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos();
+
+
     //document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos;
 
 }
@@ -178,7 +193,7 @@ function cargarInicialProductos() {
 
 
 
- 
+
 /* Intentamos cargar los datos desde una api o archivo json:
  -si la arga demora, notifica cada 10 segundo que esta lento
  
@@ -186,25 +201,26 @@ function cargarInicialProductos() {
 */
 let intentos = 0;
 const interval = setInterval(() => {
-   /// usamos la funcion "cargarProductosDB" hecha con fetch para cargar los datos de api o archivo json
+    /// usamos la funcion "cargarProductosDB" hecha con fetch para cargar los datos de api o archivo json
     cargarProductosDB(true)
         .then(promesa => {
             intentos++;
-            
+
             const interval2 = setInterval(() => {
-                console.log(intentos)
+               // console.log(intentos)
                 if (arrProductos.length > 1) {
                     // si hay productos en el array cargamos en el front y habilitamos carrito, favorito y buscador
                     cargarInicialProductos();
-                    habilitaBotones('btnFavorito',true);
-                    habilitaBotones('btnCarrito',true);
-                    habilitaBotones('buscador',true);
+                    habilitaBotones('btnFavorito', true);
+                    habilitaBotones('btnCarrito', true);
+                    habilitaBotones('buscador', true);
+                    paginador();
                     clearInterval(interval2);
                     clearInterval(interval);
 
                 }
                 //avisa si se tarda mas de lo normal en cargar los productos
-                if( intentos > 0 && intentos++ % 8 === 0) notificaciones('La carga de productos esta tardando mas de lo normal','gray')
+                if (intentos > 0 && intentos++ % 8 === 0) notificaciones('La carga de productos esta tardando mas de lo normal', 'gray')
             }, 1000)
         })
         .catch(error => {
@@ -216,15 +232,53 @@ const interval = setInterval(() => {
         }
 
         )
-       
-        console.log(arrProductos)
+
+    //console.log(arrProductos)
 }, 1000)
 
 
-//actualizaPrecioBitcoin();
-setInterval(actualizaPrecioBitcoin(),500000)
+// consulta el precio del bitcoin en criptoya cada 5 minutos y actualiza los precios
+const bitcoin = () => {
+    actualizaPrecioBitcoin();
+};
+bitcoin();
+let repeticiones = setInterval(bitcoin, 300000);
 
 
+
+
+const paginador = () => {
+
+    let totalPaginas = Math.ceil(arrProductosFiltrado.length / PAGINADOR_CANTIDAD);
+    let paginador = document.getElementById('pagination');
+    let contenido = "";
+    for (let i = 0; i < totalPaginas; i++) {
+        contenido += `
+    <li class="page-item"><a class="page-link ${(i == 0) ? "pagina_activa" : ""}" style="background-color: gray;" href="#" id="pag_${i}">${i + 1}</a></li>
+    `;
+    };
+    paginador.innerHTML = contenido;
+    for (let i = 0; i < totalPaginas; i++) {
+        document.getElementById(`pag_${i}`).addEventListener('click', (e) => {
+            e.preventDefault();
+            verificaFiltro();
+            generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: i * PAGINADOR_CANTIDAD, cantidad: (i + 1) * PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc);
+
+            for (let i = 0; i < totalPaginas; i++) {
+                document.getElementById(`pag_${i}`).classList.remove('pagina_activa');
+            }
+            document.getElementById(`pag_${i}`).classList.add('pagina_activa');
+        });
+    };
+    //console.log('paginador: ' + totalPaginas)
+    //console.log(arrProductosFiltrado.length)
+
+}
+
+
+document.body.onclick = () => {
+    document.getElementById('resultadoBuscador').style.display = 'none';
+}
 
 
 

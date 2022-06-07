@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "cp": "x5000",
+        "localidad": "Cordoba Capital",
+        "costoenvio": 1200
+    },
+    {
+        "id": 2,
+        "cp": "y6000",
+        "localidad": "Santa Fe",
+        "costoenvio": 1100
+    },
+    {
+        "id": 2,
+        "cp": "z7000",
+        "localidad": "San Luis",
+        "costoenvio": 1000
+    }
+]

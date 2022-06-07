@@ -1,5 +1,7 @@
 import { arrProductos, generarProductosCarrito } from "./Producto.js";
-import { notificaciones} from '../funciones.js';
+import { ENVIOGRATIS, cpEnvioSeleccionado } from "./Envio.js";
+import { notificaciones } from '../funciones.js';
+
 
 class Carrito {
 
@@ -17,21 +19,23 @@ class Carrito {
 
     agregarProductoCarrito(sku, talle = 'M', cantidad = 1) {
         //var arr = JSON.parse(localStorage.getItem('carrito'));
-        if(this.verificaStock(sku, talle, cantidad) >= 0){
-        let indice = this.arrProductosCarrito.findIndex(producto => (producto.sku == sku && producto.talleElegido == talle));
-        if (indice === -1 || indice === null) {
-            this.arrProductosCarrito.push({ sku: sku, talleElegido: talle, cantidad: cantidad });
-        } else {
-            this.arrProductosCarrito[indice].cantidad += cantidad;
-        };
-        
-        localStorage.setItem('carrito', JSON.stringify(this.arrProductosCarrito));
-        notificaciones('Producto AGREGADO al carrito','green');
-    }else{
+        if (this.verificaStock(sku, talle, cantidad) >= 0) {
+            let indice = this.arrProductosCarrito.findIndex(producto => (producto.sku == sku && producto.talleElegido == talle));
+            if (indice === -1 || indice === null) {
+                this.arrProductosCarrito.push({ sku: sku, talleElegido: talle, cantidad: cantidad });
+            } else {
+                this.arrProductosCarrito[indice].cantidad += cantidad;
+            };
 
-        notificaciones('No hay stock de este producto','red');
-    }
-   
+            localStorage.setItem('carrito', JSON.stringify(this.arrProductosCarrito));
+           
+            notificaciones('Producto AGREGADO al carrito', 'green');
+            if (this.importeTotal() > ENVIOGRATIS && cpEnvioSeleccionado.localidad !== undefined) notificaciones(`Tenes envio gratis a ${cpEnvioSeleccionado.localidad}!!!!`)
+        } else {
+
+            notificaciones('No hay stock de este producto', 'red');
+        }
+
         console.log(this.arrProductosCarrito);
     }
 
@@ -43,22 +47,22 @@ class Carrito {
         let cantidadCarrito = carritoStorage.find(car => car.sku === sku && car.talleElegido === talle) ?? [];
 
         let disponible = parseInt(unidades - parseInt(cantidadCarrito['cantidad'] + cantidad));
-       // console.log((isNaN(disponible)) ? unidades : disponible);
+        // console.log((isNaN(disponible)) ? unidades : disponible);
         return (isNaN(disponible)) ? unidades : disponible;
 
     }
 
-   
 
-    quitarProductoCarrito = (sku, talleElegido) =>{
-        let arr = JSON.parse(localStorage.getItem('carrito')) ?? [];  
-        let indice = arr.findIndex(carrito => carrito.sku === sku && carrito.talleElegido === talleElegido); 
+
+    quitarProductoCarrito = (sku, talleElegido) => {
+        let arr = JSON.parse(localStorage.getItem('carrito')) ?? [];
+        let indice = arr.findIndex(carrito => carrito.sku === sku && carrito.talleElegido === talleElegido);
         console.log(indice);
         arr.splice(indice, 1);
-        localStorage.setItem('carrito',JSON.stringify(arr));
+        localStorage.setItem('carrito', JSON.stringify(arr));
         carrito.arrProductosCarrito = [...arr];
         generarProductosCarrito('productosCarrito', carrito.arrProductosCarrito);
-        notificaciones('Producto QUITADO del carrito','orange');
+        notificaciones('Producto QUITADO del carrito', 'orange');
         return arr;
     }
 
@@ -75,15 +79,31 @@ class Carrito {
         return suma;
     }
 
-    importeTotal(moneda="") {
-//console.log(carrito.arrProductosCarrito)
+    importeTotal(moneda = "") {
+        let arrRet = [];
+
+        //console.log(carrito.arrProductosCarrito)
+        let arrProductosLocal = [...arrProductos];
+        this.arrProductosCarrito.forEach((carro) => {
+
+            let ret = arrProductosLocal.find(producto => producto.sku == carro.sku) ?? 0;
+            if (ret != 0) {
+                let reta = Object.assign(carro, ret);
+
+                arrRet.push(reta);
+            }
+
+
+
+        });
+
         let total = 0;
-        for (let producto of this.arrProductosCarrito) {
-           total +=  (moneda=='btc') ?  (producto.precioBitcoin * producto.cantidad) : producto.precio*producto.cantidad;
+        for (let producto of arrRet) {
+            total += (moneda == 'btc') ? (producto.precioBitcoin * producto.cantidad) : producto.precio * producto.cantidad;
 
         };
 
-        return (total);
+        return total;
     }
 
 

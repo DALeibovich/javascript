@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "titulo": "Bienvenido a Tienda House",
+        "bajada": "Tienda House es la tienda numero 1 del mundo!. En ella encontraras ropa de primeras marcas",
+        "image": "",
+        "nombreBoton": "Conocenos!",
+        "linkDestino": "/quienes-somos",
+        "orden": 1,
+        "posicionPagina": "Home-top"
+    },
+    {
+        "id": 2,
+        "titulo": "15% OFF en junio",
+        "bajada": "Compra en todo el sitio con un 15% de descuento. Usa el cupon <b>HOUSE15</b>.",
+        "image": "",
+        "nombreBoton": "Lo aprovecho!!",
+        "linkDestino": "/promos",
+        "orden": 2,
+        "posicionPagina": "Home-top, Home-pie"
+    },
+    {
+        "id": 3,
+        "titulo": "Envio gratis",
+        "bajada": "Del 20 al 31 de mayo envio gratis. Minimo de compra $6000",
+        "image": "",
+        "nombreBoton": "Enviame gratis!",
+        "linkDestino": "/promos",
+        "orden": 3,
+        "posicionPagina": "Home-pie, Home-medio"
+    },
+    {
+        "id": 4,
+        "titulo": "¿Tu primer compra?",
+        "bajada": "Te regalamos $500 en tu primer compra en el sitio!. usa el cupon <b>HOUSE500</b>. Minimo de compra $1000",
+        "image": "",
+        "nombreBoton": "Compra ya!",
+        "linkDestino": "/promos",
+        "orden": 4,
+        "posicionPagina": "Home-top, Home-pie"
+    },
+    {
+        "id": 5,
+        "titulo": "#imperdibles",
+        "bajada": "Durante todo el año disfruta descuentos y promociones increibles",
+        "image": "",
+        "nombreBoton": "Saber mas!!!",
+        "linkDestino": "/saber-mas",
+        "orden": 1,
+        "posicionPagina": "Home-medio"
+    },
+    {
+        "id": 6,
+        "titulo": "Promo Coderhouse",
+        "bajada": "Mencionando TiendaHouse en tus cursos de Coderhouse, obtener un 20% de descuento",
+        "image": "",
+        "nombreBoton": "Saber mas!!!",
+        "linkDestino": "https://coderhouse.com",
+        "orden": 7,
+        "posicionPagina": "Home-medio, Home-pie, Home-top"
+    }
+]

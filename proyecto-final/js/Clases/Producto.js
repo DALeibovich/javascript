@@ -1,5 +1,7 @@
 
-import { renderizaCardProducto } from './componentes/productos.js';
+import { renderizaCardProducto, renderizaPrecioBitcoin } from './componentes/productos.js';
+const API_PRODUCTO = 'https://json.ar/apis/archivos/a064fc2360a50fb24d515ad7b14120fa.json';
+//const API_PRODUCTO = 'json/DB_productos.json';
 export class Producto {
 
     constructor(id=0, sku='', categoria='', nombre='', imagen='', precio='', descripcion='', stock=[], marca='') {
@@ -37,9 +39,10 @@ export const actualizaPrecioBitcoin = () => {
       
         arrProductos.forEach((s) => {
             s.precioBitcoin = s.precio/BTC;
-            console.log(s.precioBitcoin)
+            s.precioBitcoin = s.precio/BTC;
+       
         });
-        
+        renderizaPrecioBitcoin();
     })
     .catch(error => {
         console.error(error)
@@ -65,7 +68,8 @@ const talle = (stock) => {
 export const cargarProductosDB = (valor) => {
     return new Promise((res, rej) => {
         if (valor == true) {
-            fetch("json/DB_productos.json")
+            //fetch("json/DB_productos.json")
+            fetch(API_PRODUCTO)
                 .then(response => response.json(0))
                 .then(data => {
                     for (let elemento of data) {
@@ -117,18 +121,21 @@ const filtrarPor = (arr, filtro) => {
 }
 
 const ordenarPor = (arr, campo = 'precio', ascdesc = 'ascendente') => {
-  //  console.log(arr)
+
     let ret = 1;
     let retInv = -1;
     let retorno;
-    (ascdesc === 'descendente') ? retInv = 1 : ret = -1;
+    if(ascdesc === 'descendente'){
+        ret = -1;
+        retInv = 1;
+    }
 
     if (campo === 'precio') retorno = ordenarProductoXprecio(arr, ascdesc);
     if (campo === 'categoria') retorno = ordenarProductoXcategoria(arr, ret, retInv);
     if (campo === 'nombre') retorno = ordenarProductoXnombre(arr, ret, retInv);
     if (campo === 'marca') retorno = ordenarProductoXmarca(arr, ret, retInv);
     if (campo === 'sku') retorno = ordenarProductoXsku(arr, ret, retInv);
-
+    return retorno;
 }
 
 const ordenarProductoXsku = (arr, ret, retInv) => {
@@ -139,7 +146,7 @@ const ordenarProductoXsku = (arr, ret, retInv) => {
 
     });
 
-
+    return arr;
 
 }
 const ordenarProductoXnombre = (arr, ret, retInv) => {
@@ -149,7 +156,7 @@ const ordenarProductoXnombre = (arr, ret, retInv) => {
         return (a.nombre.toLowerCase() < b.nombre.toLowerCase()) ? retInv : (a.nombre.toLowerCase() > b.nombre.toLowerCase()) ? ret : 0;
 
     });
-
+    return arr;
 
 }
 
@@ -160,6 +167,7 @@ const ordenarProductoXmarca = (arr, ret, retInv) => {
 
     });
 
+    return arr;
 
 }
 
@@ -169,7 +177,7 @@ const ordenarProductoXcategoria = (arr, ret, retInv) => {
         return (a.categoria.toLowerCase() < b.categoria.toLowerCase()) ? retInv : (a.categoria.toLowerCase() > b.categoria.toLowerCase()) ? ret : 0;
 
     });
-
+    return arr;
 
 }
 
@@ -178,14 +186,14 @@ const ordenarProductoXprecio = (arr, ascdesc) => {
     if (ascdesc == 'descendente') {
         arr.sort((a, b) => b.precio - a.precio);
     }
-
+    return arr;
 }
 
 
 
 export const generarProductosCarrito = (idSeccion, arr) => {
     let arrRet = [];
-  console.log(arrProductos[0].sku)
+
 
     if(arrProductos[0].sku !== '') {
     let arrProductosLocal = [...arrProductos];
@@ -208,11 +216,15 @@ export const generarProductosCarrito = (idSeccion, arr) => {
 
 }
 
+export const importeBTC = (importe) =>{
+return importe / BTC;
+    
+}
 
 export const generarProductosFavorito = (idSeccion, arr) => {
     let arrRet = Array();
     arr.forEach((favorito) => {
-        //console.log(arr);
+        
         let ret = arrProductos.find(producto => producto.sku == favorito) ?? 0;
         if (ret != 0) arrRet.push(ret);
 
@@ -220,7 +232,7 @@ export const generarProductosFavorito = (idSeccion, arr) => {
     renderizaCardProducto(idSeccion, arrRet);
 }
 
-export const generarProductos = (idSeccion, filtro = { filtrarCampo: undefined, filtrarValor: undefined }, rango = { ini: 0, cantidad: 100 }, ordenarpor = 'precio', formaOrden = 'ascendente') => {
+export const generarProductos = (idSeccion, filtro = { filtrarCampo: undefined, filtrarValor: undefined }, rango = { ini: 0, cantidad: 100 }, ordenarpor = 'precio', formaOrden = 'ascendente',loading=true) => {
     
     let cont = 0;
     // Hacemos copia del array de objetos original.
@@ -230,13 +242,16 @@ export const generarProductos = (idSeccion, filtro = { filtrarCampo: undefined, 
     arrProductosLocal = filtrarPor(arrProductosLocal, filtro);
 
     // Ordena el array segun parametro: ordenarpor
-    ordenarPor(arrProductosLocal, ordenarpor, formaOrden);
+    arrProductosLocal = ordenarPor(arrProductosLocal, ordenarpor, formaOrden);
 
+    (rango.ini === 0) ? arrProductosFiltrado = arrProductosLocal : arrProductosLocal = arrProductosFiltrado;
+   
     // Recorta el array segun el parametro @rango  (se puede utilizar para paginacion)
     arrProductosLocal = arrProductosLocal.slice(parseInt(rango.ini), parseInt(rango.cantidad));
 
     // renderiza la card de producto segun el array y en la posicion del parametro @idSeccion
-    renderizaCardProducto(idSeccion, arrProductosLocal);
+    renderizaCardProducto(idSeccion, arrProductosLocal, loading);
+    
 
 
 }
@@ -251,32 +266,7 @@ const producto5 = new Producto(5, 'laco90', 'Camisas', 'Camisa Lagartija', 'p2.p
 const producto6 = new Producto(6, 'laco04', 'Camisas', 'Camisa Chelco', 'p10.png', 9800, 'Camisa manga cortas de lino', [{ talle: "XL", unidades: 4 }], 'Lacoste');
 */
 export let arrProductos = [new Producto()];
+export let arrProductosFiltrado;
 
-//export let arrProductos = [];
 
-//export const arrProductos = arrProductos2;
-    //console.log(arrProductos2.data)
-/*export const arrProductos =  cargarProductos = () =>{
-    fetch("https://criptoya.co/api/dolar")
-    .then(response => response.json())
-    .then((data = ) => {
 
-    divDolar.innerHTML = `
-        <p>Oficial: $${oficial}</p>
-        <p>Solidario: $${solidario}</p>
-        <p>CCL: $${ccl}</p>
-        <p>CCB: $${ccb}</p>
-        <p>Mep: $${mep}</p>
-        <p>Blue: $${blue}</p>
-    `
-    })
-    .catch(error => {
-        console.error(error)
-        clearInterval(interval)
-    })
-}
-*/
-//console.log(cargarProductos);
-
-        //export const arrProductos =  [new Producto()];
-//console.log(JSON.stringify(arrProductos));

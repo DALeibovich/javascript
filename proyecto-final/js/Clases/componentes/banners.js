@@ -73,10 +73,10 @@ const renderizaBannerHomeMedio = (posicionPagina, arr, cantidad) => {
      <div class="arrival_bg_box">
         <img src="images/arrival-bg.png" alt="">
      </div>
-     <div class="row">
-        <div class="col-md-6 ml-auto">
-           <div class="heading_container remove_line_bt">
-              <h2>
+     <div class="row" align="center">
+        <div class="col-md-12 ml-auto"  align="center">
+           <div class="heading_container" style="align-items: center;"  align="center">
+              <h2  align="center">
               ${banner.titulo}
               </h2>
            </div>

@@ -39,6 +39,10 @@
 
 </head>
 <style>
+   .pagina_activa{
+      background-color: red!important;
+   }
+   
    .container div{
       padding: 10px;
    }
@@ -81,16 +85,14 @@
       z-index: 1000;
    }
 
-   .arrival_bg_box {
-      max-width: 100%
-   }
+  
 
-   @media only screen and (max-width: 600px) {
+   
       .arrival_bg_box {
          display: none;
 
       }
-   }
+   
 </style>
 
 <body>
@@ -234,9 +236,13 @@
 
          </div>
          <div class="btn-box">
-            <a href="">
-               View All products
-            </a>
+            <nav aria-label="Page navigation example">
+               <ul class="pagination" id="pagination">
+                 
+                 
+                
+               </ul>
+             </nav>
          </div>
       </div>
    </section>
@@ -381,9 +387,12 @@
                   <span aria-hidden="true">&times;</span>
                </button>
             </div>
+            <div id="accordion">
+               
             <div class="modal-body" id="productosCarrito" style="overflow-y:scroll; height:60vh">
 
             </div>
+         </div>
             <div class="modal-footer">
 
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

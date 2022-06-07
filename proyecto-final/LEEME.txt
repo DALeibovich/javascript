@@ -1,3 +1,9 @@
+/***** Version 1.5 *****/
+Funcionalidades ENTREGA FINAL
+-Actualizacion del selector de talle si se quita del carrito y esta la card del producto visible
+-Actualizacion del boton favorita si se quita del modal favorito y esta la card del producto visible
+-Se incluye paginador de los resultados de productos
+
 /***** Version 1.4 *****/
 Consideraciones en la entrega AGREGANDO FETCH:
 -Se hizo fetch para cargar los productos desde un archivo json
