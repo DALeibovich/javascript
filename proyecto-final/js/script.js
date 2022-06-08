@@ -143,8 +143,9 @@ selOrdenAsc.addEventListener('change', () => {
 // Buscador del TOP
 filtroBuscador.addEventListener('input', () => {
     let texto = filtroBuscador.value.toLowerCase();
+  
     (texto === '') ? resultadoBuscador.style.display = 'none' : resultadoBuscador.style.display = 'block';
-    generarProductos('resultadoBuscador', { filtrarCampo: "buscador", filtrarValor: texto }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc, false);
+    generarProductos('resultadoBuscador', { filtrarCampo: "buscador", filtrarValor: texto }, { ini: 0, cantidad: 15 }, 'precio', 'ascenente', false);
 })
 
 document.getElementById('productosHome').innerHTML = `

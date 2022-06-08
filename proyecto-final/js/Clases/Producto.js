@@ -244,16 +244,15 @@ export const generarProductos = (idSeccion, filtro = { filtrarCampo: undefined, 
     // Ordena el array segun parametro: ordenarpor
     arrProductosLocal = ordenarPor(arrProductosLocal, ordenarpor, formaOrden);
 
+    // usamos el array diltrado si estamos paginando
     (rango.ini === 0) ? arrProductosFiltrado = arrProductosLocal : arrProductosLocal = arrProductosFiltrado;
-   
+
     // Recorta el array segun el parametro @rango  (se puede utilizar para paginacion)
     arrProductosLocal = arrProductosLocal.slice(parseInt(rango.ini), parseInt(rango.cantidad));
 
     // renderiza la card de producto segun el array y en la posicion del parametro @idSeccion
     renderizaCardProducto(idSeccion, arrProductosLocal, loading);
     
-
-
 }
 
 
