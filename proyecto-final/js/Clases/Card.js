@@ -23,7 +23,6 @@ const card6 = new Card(6, 'seccion_sucursales', 'Puerto Madero', 'sucursal.png',
 
 let cards = [new Card()];
 
-
 const cargaCards = async () => {
     let cardsLocal = [];
     let controller = new AbortController();
@@ -39,14 +38,13 @@ const cargaCards = async () => {
         console.log('error de conexion');
     }
 
-    
+
     return response.ok;
 }
 
 
-
 export const generarCards = (idSeccion, cantidad) => {
-     
+
     // consultamos si esta cargado el array de cards sino esta cargado usamos un fetch al archivo .json
     if (cards.length > 1) {
         let arrCards = [...cards].filter(arrCards => arrCards.tipo == idSeccion);

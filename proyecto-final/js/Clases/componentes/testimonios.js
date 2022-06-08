@@ -1,16 +1,16 @@
 
 export const renderizaTestimonio = (idSeccion, arr, cantidad) => {
-    let cont = 0;
-    let activo = "active";
-    let contenido =
-    `<div id="carousel${idSeccion}" class="carousel slide" data-ride="carousel">
+   let cont = 0;
+   let activo = "active";
+   let contenido =
+      `<div id="carousel${idSeccion}" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">`;
-    
-    for (let testimonio of arr) { 
-       if (cont++ < cantidad) {
-          if (cont > 1) activo = "";
-          contenido +=
-             `<div class="carousel-item ${activo}">
+
+   for (let testimonio of arr) {
+      if (cont++ < cantidad) {
+         if (cont > 1) activo = "";
+         contenido +=
+            `<div class="carousel-item ${activo}">
                    <div class="box col-lg-10 mx-auto">
                       <div class="img_container">
                          <div class="img-box">
@@ -35,11 +35,11 @@ export const renderizaTestimonio = (idSeccion, arr, cantidad) => {
 
                 
             `;
-       }
- 
-    };
+      }
 
-    contenido += ` </div>
+   };
+
+   contenido += ` </div>
     <div class="carousel_btn_box">
        <a class="carousel-control-prev" href="#carousel${idSeccion}" role="button" data-slide="prev">
        <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
@@ -51,5 +51,5 @@ export const renderizaTestimonio = (idSeccion, arr, cantidad) => {
        </a>
     </div>
  </div>`;
-    document.getElementById(idSeccion).innerHTML = contenido;
- }
+   document.getElementById(idSeccion).innerHTML = contenido;
+}

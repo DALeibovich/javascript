@@ -5,8 +5,8 @@ import { generarCards } from './Clases/Card.js';
 import { arrProductos, arrProductosFiltrado, actualizaPrecioBitcoin, cargarProductosDB, generarProductos, generarProductosCarrito, generarProductosFavorito } from './Clases/Producto.js';
 import { favorito } from './Clases/Favorito.js';
 import { carrito } from './Clases/Carrito.js';
-import { cuponSeleccionado } from './Clases/Cupon.js';
-import { cpEnvioSeleccionado } from './Clases/Envio.js';
+/*import { cuponSeleccionado } from './Clases/Cupon.js';
+import { cpEnvioSeleccionado } from './Clases/Envio.js';*/
 import { habilitaBotones, notificaciones } from './funciones.js';
 
 const PAGINADOR_CANTIDAD = 3;
@@ -128,7 +128,7 @@ filtroTalle.addEventListener('change', () => {
 
 selOrden.addEventListener('change', () => {
     verificaFiltro();
-   // console.log(campoOrden + '   ' + campoOrdenAsc)
+    // console.log(campoOrden + '   ' + campoOrdenAsc)
     generarProductos('productosHome', { filtrarCampo: campoFiltro.toString(), filtrarValor: valorFiltro.toString() }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc);
     paginador();
 })
@@ -144,7 +144,7 @@ selOrdenAsc.addEventListener('change', () => {
 filtroBuscador.addEventListener('input', () => {
     let texto = filtroBuscador.value.toLowerCase();
     (texto === '') ? resultadoBuscador.style.display = 'none' : resultadoBuscador.style.display = 'block';
-    generarProductos('resultadoBuscador', { filtrarCampo: "buscador", filtrarValor: texto }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc,false);
+    generarProductos('resultadoBuscador', { filtrarCampo: "buscador", filtrarValor: texto }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, campoOrden, campoOrdenAsc, false);
 })
 
 document.getElementById('productosHome').innerHTML = `
@@ -160,9 +160,10 @@ generarBanners('Home-medio', 1); //carga el banner del medio
 generarTestimonios('seccion_testimonio', 5); //carga los testimonios de la home
 
 
-
-generarCards('seccion_elegirnos', 5); //carga las cards de contenidos de la seccion "porque elegirnos"
-generarCards('seccion_sucursales', 5); //carga las cards de sucursales
+//carga las cards de contenidos de la seccion "porque elegirnos"
+generarCards('seccion_elegirnos', 5); 
+//carga las cards de sucursales
+generarCards('seccion_sucursales', 5); 
 
 
 function cargarInicialProductos() {
@@ -171,33 +172,26 @@ function cargarInicialProductos() {
     carrito.cargarCarritoStorage(); // Carga el carrito de localStorage
     favorito.cargarFavoritoStorage(); // Carga favoritos de localStorage
 
-    
-    //cpEnvioSeleccionado = JSON.parse(localStorage.getItem('envio')) ?? '';
+    // carga productos en secciones predefinidas (lacoste y vestidos)
+    generarProductos('seccion_lacoste', { filtrarCampo: "categoria,marca", filtrarValor: "Camisas,Lacoste" }, { ini: 0, cantidad: 3 }, 'nombre', 'ascendente');
+    generarProductos('seccion_vestidos', { filtrarCampo: "categoria", filtrarValor: "Vestidos" }, { ini: 0, cantidad: 3 }, 'nombre', 'ascendente');
+
     //restaura los filtro de la sessionStorage y los ejecuta., SI NO hay filtro muestra todos los productos
     if (restaurarFiltros() == false) {
 
         /* Genera la seccion de productos de la home segun parametros (Se deja comentado distintas opciones para cargar) */
-        //generarProductos('productosHome');
         generarProductos('productosHome', { filtrarCampo: undefined, filtrarValor: undefined }, { ini: 0, cantidad: PAGINADOR_CANTIDAD }, 'precio', 'ascendente');
-        //generarProductos('productosHome',{filtrarCampo:"marca", filtrarValor:"Lacoste"},{ini:0,cantidad:15},'nombre','ascendente');
-        //generarProductos('productosHome',{filtrarCampo:"categoria", filtrarValor:"Camisas"},{ini:2,cantidad:20},'nombre','ascendente');
     }
     document.getElementById('btnCarrito_total').innerHTML = carrito.cantidadProductos();
     document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos();
 
 
-    //document.getElementById('btnFavorito_total').innerHTML = favorito.cantidadProductos;
-
+    document.getElementById('seccion_lacoste').innerHTML = favorito.cantidadProductos;
 }
-
-
-
 
 
 /* Intentamos cargar los datos desde una api o archivo json:
  -si la arga demora, notifica cada 10 segundo que esta lento
- 
-
 */
 let intentos = 0;
 const interval = setInterval(() => {
@@ -207,7 +201,7 @@ const interval = setInterval(() => {
             intentos++;
 
             const interval2 = setInterval(() => {
-               // console.log(intentos)
+                // console.log(intentos)
                 if (arrProductos.length > 1) {
                     // si hay productos en el array cargamos en el front y habilitamos carrito, favorito y buscador
                     cargarInicialProductos();
@@ -244,9 +238,6 @@ const bitcoin = () => {
 bitcoin();
 let repeticiones = setInterval(bitcoin, 300000);
 
-
-
-
 const paginador = () => {
 
     let totalPaginas = Math.ceil(arrProductosFiltrado.length / PAGINADOR_CANTIDAD);
@@ -270,17 +261,10 @@ const paginador = () => {
             document.getElementById(`pag_${i}`).classList.add('pagina_activa');
         });
     };
-    //console.log('paginador: ' + totalPaginas)
-    //console.log(arrProductosFiltrado.length)
+
 
 }
-
 
 document.body.onclick = () => {
     document.getElementById('resultadoBuscador').style.display = 'none';
 }
-
-
-
-
-

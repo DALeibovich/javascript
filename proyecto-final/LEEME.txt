@@ -1,8 +1,41 @@
+Caracteristicas principales del E-commerce
+- Los banners ("slider principal", "#imperdibles"), cards ("porque elegirnos", "sucursales"), testimonios ("nuestros clientes opinan"), cupones de descuento, costo envio se cargan desde archivos .json local con fetch 
+- Los productos se cargan remotamente desde https://json.ar (una idea que surgio durante el curso para hacer "pseudos apis"!, le voy a dar continuidad con NodeJS a la idea.)
+- Secciones predefinidas para mostrar producto (#lacoste y #vestidos)
+- Los productos mostrados en la seccion "nuestros productos" pueden ser filtrados, ordenados y paginados
+- Permite agregar/quitar a favoritos desde la misma card de producto
+- Permite agregar productos al carrito controlando el stock segun el talle
+- Los productos son mostrado en Pesos y Bitcoin (actualizable desde api cryptoya.com cada 5 minutos)
+- Buscador "livesearch" sobre el top de productos
+- Notificaciones en diversas acciones con colores segun el evento
+- Carrito de compra discriminado por poducto y talle del mismo.
+- Permite agregar/quitar un cupon de descuento detectando si es por % o por importe fijo 
+- Permite calcular el costo de envio ingresando el Codigo Postal.
+- Hace envio gratis para compras mayores a $16.000
+- Se guarda en locastorage (carrito, favoritos, cupon, envio) y sessionStorage (filtros y orden)
+
+CUPONES DISPONIBLES: house10, house15, house30, house500, house800
+CP DISPONIBLES: x5000, y6000, z7000, a1000, b2000
+ENVIO GRATIS para mayor a 16000
+PAGiNADOR cada 3 productos
+
+ESTRUCTURA DE ARCHIVOS
+js/script.js  = hilo principal del ecommerce
+js/funciones.js = funciones comunes
+js/Clases/ = Clases de entidades usadas
+js/Clases/componentes/ = componenente de renderizados de las clases
+json/ = archivos .json
+
+
+
+
 /***** Version 1.5 *****/
 Funcionalidades ENTREGA FINAL
 -Actualizacion del selector de talle si se quita del carrito y esta la card del producto visible
 -Actualizacion del boton favorita si se quita del modal favorito y esta la card del producto visible
 -Se incluye paginador de los resultados de productos
+-Formulario de finalizacion para ingreso de datos de la compra
+
 
 /***** Version 1.4 *****/
 Consideraciones en la entrega AGREGANDO FETCH:

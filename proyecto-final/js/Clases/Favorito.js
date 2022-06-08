@@ -7,7 +7,6 @@ class Favorito {
         this.arrFavorito = arrFavorito;
     }
 
-
     cargarFavoritoStorage = () => {
         this.arrFavorito = JSON.parse(localStorage.getItem('favorito')) ?? [];
 
@@ -23,7 +22,6 @@ class Favorito {
 
 
     }
-
 
     quitarFavorito = (sku) => {
         let arr = JSON.parse(localStorage.getItem('favorito')) ?? [];
@@ -48,14 +46,7 @@ class Favorito {
         return parseInt(suma);
     }
 
-
-
 }
-
-
-
-
-
 
 export const favorito = new Favorito();
 

@@ -1,10 +1,13 @@
 import { arrProductos, generarProductosCarrito } from "./Producto.js";
 import { ENVIOGRATIS, cpEnvioSeleccionado } from "./Envio.js";
+import { cuponSeleccionado } from "./Cupon.js";
 import { notificaciones } from '../funciones.js';
 
 
 class Carrito {
-
+    static importeApagar = 0;
+    static importeDescuento = 0;
+    static importeEnvio = 0;
     constructor(idHas, arrProductosCarrito) {
 
         this.idCliente;
@@ -13,6 +16,7 @@ class Carrito {
         this.fecha = new Date();
         this.cuponAplicables = '';
         this.cpEnvio = '';
+
         if (this.idHash === undefined) this.idHash = this.generateRandomString(16).toString();
 
     }
@@ -28,7 +32,7 @@ class Carrito {
             };
 
             localStorage.setItem('carrito', JSON.stringify(this.arrProductosCarrito));
-           
+
             notificaciones('Producto AGREGADO al carrito', 'green');
             if (this.importeTotal() > ENVIOGRATIS && cpEnvioSeleccionado.localidad !== undefined) notificaciones(`Tenes envio gratis a ${cpEnvioSeleccionado.localidad}!!!!`)
         } else {
@@ -36,7 +40,7 @@ class Carrito {
             notificaciones('No hay stock de este producto', 'red');
         }
 
-        console.log(this.arrProductosCarrito);
+
     }
 
     verificaStock = (sku, talle, cantidad = 0) => {
@@ -114,9 +118,14 @@ class Carrito {
         return result1;
     }
 
+    finalizarCompra = () => {
+        // enviariamos los datos por fetch a alguna api y vaciamos todo
+        this.arrProductosCarrito = [];
+
+        localStorage.removeItem('carrito');
+        localStorage.removeItem('cupon');
+        localStorage.removeItem('envio');
+    }
 }
-
-
-
 
 export const carrito = new Carrito();

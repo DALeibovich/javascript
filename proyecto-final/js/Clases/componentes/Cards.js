@@ -6,15 +6,15 @@ export const renderizaCard = (idSeccion, arr, cantidad) => {
    <i class="fa fa-spinner fa-spin" style="font-size:80px" id="productosHome_${idSeccion}"></i>
    </div>
    `
-    let cont = 0;
-  // console.log(arr)
-    let contenido = "";
-    
-    for (let card of arr) { 
-       if (cont++ < cantidad) {
-       
-          contenido +=
-             `<div class="col-md-4">
+   let cont = 0;
+   // console.log(arr)
+   let contenido = "";
+
+   for (let card of arr) {
+      if (cont++ < cantidad) {
+
+         contenido +=
+            `<div class="col-md-4">
              <div class="box"  style="background-color: #076389;">
                 <div class="img-box">
                    <img src="images/${card.imagen}" width="70px" height="70px" >
@@ -31,12 +31,12 @@ export const renderizaCard = (idSeccion, arr, cantidad) => {
           </div>
                 
             `;
-       }
- 
-    };
+      }
 
-   
-    document.getElementById(idSeccion).innerHTML = contenido;
- }
+   };
+
+
+   document.getElementById(idSeccion).innerHTML = contenido;
+}
 
 

@@ -92,7 +92,7 @@ const cargaCupones = async () => {
         console.log('error de conexion');
     }
 
-    
+
     return response.ok;
 }
 

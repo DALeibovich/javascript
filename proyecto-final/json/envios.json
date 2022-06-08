@@ -12,9 +12,22 @@
         "costoenvio": 1100
     },
     {
-        "id": 2,
+        "id": 3,
         "cp": "z7000",
         "localidad": "San Luis",
         "costoenvio": 1000
+    },
+    {
+        "id": 4,
+        "cp": "a1000",
+        "localidad": "Trelew",
+        "costoenvio": 1800
+    },
+    {
+        "id": 5,
+        "cp": "b2000",
+        "localidad": "Salta",
+        "costoenvio": 950
     }
+    
 ]
